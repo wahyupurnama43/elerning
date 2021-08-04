@@ -17,6 +17,7 @@
     AND t1.id_ujian = t2.id_ujian 
     AND t2.id_kelas = '$_SESSION[id_kelas]' 
     AND t2.aktif    = 'Y'
+    ORDER BY t1.jam_mulai ASC
   ");
   $tujian = mysqli_num_rows($qujian);
   $rujian = mysqli_fetch_array($qujian);

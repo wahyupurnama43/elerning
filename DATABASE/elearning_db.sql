@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Agu 2021 pada 07.07
+-- Waktu pembuatan: 04 Agu 2021 pada 08.27
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 8.0.6
 
@@ -242,6 +242,7 @@ INSERT INTO `kelas_ujian` (`id_klsujian`, `id_ujian`, `id_kelas`, `aktif`) VALUE
 (21, 45, 14, 'Y'),
 (20, 40, 14, 'Y'),
 (19, 39, 14, 'Y'),
+(30, 55, 20, 'Y'),
 (24, 42, 14, 'Y'),
 (29, 54, 20, 'Y');
 
@@ -478,7 +479,8 @@ INSERT INTO `soal` (`id_soal`, `id_ujian`, `soal`, `pilihan_1`, `pilihan_2`, `pi
 (165, 52, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y'),
 (166, 52, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y'),
 (167, 52, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y'),
-(168, 54, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y');
+(168, 54, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y'),
+(169, 55, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y');
 
 -- --------------------------------------------------------
 
@@ -920,7 +922,8 @@ CREATE TABLE `ujian` (
 --
 
 INSERT INTO `ujian` (`id_ujian`, `kategori`, `judul`, `tanggal`, `waktu`, `jml_soal`, `acak`, `tipe`, `id_jenis`, `id_guru`, `id_mapel`, `id_semester`, `jam_mulai`, `jam_selesai`) VALUES
-(54, 'pilgan', 'Aritmatika', '2021-08-04', '00:00:00', 1, 'acak', 0, 7, 16, 23, 4, '13:50', '15:00');
+(54, 'pilgan', 'Aritmatika', '2021-08-04', '00:00:00', 1, 'acak', 0, 7, 16, 23, 4, '12:50', '15:00'),
+(55, 'pilgan', 'Aritmatika', '2021-08-04', '03:00:00', 1, 'acak', 0, 7, 16, 23, 4, '15:00', '18:00');
 
 -- --------------------------------------------------------
 
@@ -1181,7 +1184,7 @@ ALTER TABLE `kelas_tugas`
 -- AUTO_INCREMENT untuk tabel `kelas_ujian`
 --
 ALTER TABLE `kelas_ujian`
-  MODIFY `id_klsujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_klsujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas_ujianessay`
@@ -1223,7 +1226,7 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT untuk tabel `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id_soal` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT untuk tabel `soal_essay`
@@ -1331,7 +1334,7 @@ ALTER TABLE `tugas_siswa`
 -- AUTO_INCREMENT untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
-  MODIFY `id_ujian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_ujian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT untuk tabel `ujian_essay`
