@@ -58,17 +58,9 @@
           AND notif.id_tugas IS NULL
           ORDER BY kelas_tugas.id_tugas DESC 
         ");
-        $kelas  = mysqli_query($con,"SELECT kelas_tugas.id_tugas FROM kelas_tugas 
+        $kelas  = mysqli_query($con,"SELECT * FROM kelas_tugas 
           JOIN tb_tugas ON kelas_tugas.id_tugas = tb_tugas.id_tugas
-          INNER JOIN tb_guru ON tb_tugas.id_guru  = tb_guru.id_guru
-          LEFT OUTER JOIN (
-            SELECT notifikasi_tugas.* FROM notifikasi_tugas
-            JOIN tb_siswa ON notifikasi_tugas.id_siswa = tb_siswa.id_siswa
-            WHERE tb_siswa.id_siswa = '$_SESSION[Siswa]'
-          ) notif ON tb_tugas.id_tugas = notif.id_tugas
           WHERE id_kelas  = '$_SESSION[id_kelas]'
-          AND kelas_tugas.aktif = 'Y'
-          AND notif.id_tugas IS NULL
           ORDER BY kelas_tugas.id_tugas DESC 
         ");
         foreach ($tugas as $key) {
@@ -84,7 +76,7 @@
         // cek tabel tugas
         $kelas  = mysqli_query($con,"SELECT * FROM kelas_tugas 
           JOIN tb_tugas ON kelas_tugas.id_tugas = tb_tugas.id_tugas
-          WHERE id_kelas  = '$_SESSION[id_kelas]'
+          WHERE id_kelas  = '0'
           ORDER BY kelas_tugas.id_tugas DESC 
         ");
       }
