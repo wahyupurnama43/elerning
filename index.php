@@ -46,20 +46,19 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-color: #4d96f1;">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-      <center><img src="vendor/images/smpdw.png" alt="" height="100" width="100"></center><br>
+        <center><img src="vendor/images/smpdw.png" alt="" height="100" width="100"></center><br>
 				<form method="post" action="" class="login100-form validate-form">
 					<span class="login100-form-title p-b-49">
 						E-LEARNING
 					</span>
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username belum diisi">
 						<span for="nis" class="label-input100">Username/NIS</span>
-						<input class="input100" type="text" name="username" placeholder="Type your username" required>
+						<input class="input100" type="text" name="username" placeholder="Type your username">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-
-					<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+					<div class="wrap-input100 validate-input m-b-23" data-validate="Password belum diisi">
 						<span for="Password" class="label-input100">Password</span>
-						<input class="input100" type="password" name="password" placeholder="Type your password" required>
+						<input class="input100" type="password" name="password" placeholder="Type your password">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					

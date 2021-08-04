@@ -110,7 +110,7 @@
           <table width="100%">
             <tr>
               <td align="right" colspan="6" rowspan="" headers="">
-                <p>Agam, 
+                <p>
                   <?php 
                     function tgl_indo($tanggal){
                       $bulan = array (

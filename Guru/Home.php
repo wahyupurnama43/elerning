@@ -1,17 +1,35 @@
 <?php 
   // jumlah mapel yg diampu
-  $mapel  = mysqli_num_rows(mysqli_query($con,"SELECT id_mapel FROM tb_roleguru WHERE id_guru='$sesi' "));
+  $mapel  = mysqli_num_rows(mysqli_query($con, "SELECT id_mapel 
+    FROM tb_roleguru 
+    WHERE id_guru = '$sesi' 
+  "));
   //perangkat
-  $perangkat  = mysqli_num_rows(mysqli_query($con,"SELECT id_tugas FROM tb_tugas WHERE id_guru='$sesi' "));
+  $perangkat  = mysqli_num_rows(mysqli_query($con, "SELECT id_tugas 
+    FROM tb_tugas 
+    JOIN tb_roleguru ON tb_tugas.id_guru = tb_roleguru.id_guru
+    WHERE tb_roleguru.id_guru = '$sesi' 
+  "));
 
   // materi
-  $materi = mysqli_num_rows(mysqli_query($con,"SELECT id_materi FROM tb_materi
-    INNER JOIN tb_roleguru ON tb_materi.id_roleguru=tb_materi.id_roleguru
-    WHERE tb_roleguru.id_guru='$sesi' "));
+  $materi = mysqli_num_rows(mysqli_query($con,"SELECT id_materi 
+    FROM tb_materi
+    INNER JOIN tb_roleguru ON tb_materi.id_roleguru = tb_materi.id_roleguru
+    WHERE tb_roleguru.id_guru = '$sesi' 
+  "));
+
   // ujian
-  $objektif = mysqli_num_rows(mysqli_query($con,"SELECT id_ujian FROM ujian WHERE id_guru='$sesi' "));
-  $essay    = mysqli_num_rows(mysqli_query($con,"SELECT id_ujianessay FROM ujian_essay WHERE id_guru='$sesi' "));
-  $ujian    = $objektif+$essay;
+  $objektif = mysqli_num_rows(mysqli_query($con, "SELECT id_ujian 
+    FROM ujian 
+    JOIN tb_roleguru ON ujian.id_guru = tb_roleguru.id_guru
+    WHERE tb_roleguru.id_guru = '$sesi' 
+  "));
+  $essay  = mysqli_num_rows(mysqli_query($con, "SELECT id_ujianessay 
+    FROM ujian_essay 
+    JOIN tb_roleguru ON ujian_essay.id_guru = tb_roleguru.id_guru
+    WHERE tb_roleguru.id_guru = '$sesi' 
+  "));
+  $ujian  = $objektif+$essay;
 
 ?>
 <div class="content-wrapper">

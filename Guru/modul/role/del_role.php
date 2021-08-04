@@ -4,6 +4,7 @@
     WHERE id_roleguru = '$_GET[id]'
   ") or die(mysqli_error($con));
   $data_role  = mysqli_fetch_assoc($role);
+
   mysqli_query($con, "UPDATE jadwal 
     SET status = 'belum'
     WHERE id_jadwal = '$data_role[jadwal_id]'
@@ -15,6 +16,17 @@
   ");
   
   //Hapus tugas
+  $tugas  = mysqli_query($con, "SELECT * FROM tb_tugas 
+    WHERE id_guru = '$data_role[id_guru]'
+    AND id_mapel  = '$data_role[id_mapel]' 
+  ");
+
+  foreach ($tugas as $key) {
+    mysqli_query($con, "DELETE FROM kelas_tugas 
+      WHERE id_tugas = '$key[id_tugas]' 
+    ");
+  }
+  
   mysqli_query($con, "DELETE FROM tb_tugas 
     WHERE id_guru = '$data_role[id_guru]'
     AND id_mapel  = '$data_role[id_mapel]' 
@@ -28,6 +40,10 @@
 
   foreach ($ujian as $key) {
     mysqli_query($con, "DELETE FROM nilai 
+      WHERE id_ujian = '$key[id_ujian]' 
+    ");
+    
+    mysqli_query($con, "DELETE FROM kelas_ujian 
       WHERE id_ujian = '$key[id_ujian]' 
     ");
   }
