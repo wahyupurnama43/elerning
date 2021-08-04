@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Agu 2021 pada 23.22
--- Versi server: 10.4.18-MariaDB
--- Versi PHP: 7.4.16
+-- Waktu pembuatan: 04 Agu 2021 pada 07.07
+-- Versi server: 10.4.19-MariaDB
+-- Versi PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -103,7 +103,13 @@ INSERT INTO `analisis` (`id_analisis`, `id_ujian`, `id_soal`, `id_siswa`, `jawab
 (61, 39, 157, 11, '2'),
 (62, 45, 159, 11, '2'),
 (63, 45, 160, 11, '2'),
-(64, 45, 161, 11, '4');
+(64, 45, 161, 11, '4'),
+(65, 51, 162, 15, '1'),
+(66, 51, 163, 15, '1'),
+(67, 51, 164, 15, '1'),
+(68, 52, 165, 15, '1'),
+(69, 52, 166, 15, '1'),
+(70, 52, 167, 15, '1');
 
 -- --------------------------------------------------------
 
@@ -212,12 +218,7 @@ INSERT INTO `kelas_tugas` (`id_klstugas`, `id_tugas`, `id_kelas`, `aktif`) VALUE
 (9, 2, 13, 'N'),
 (10, 3, 14, 'Y'),
 (11, 4, 14, 'Y'),
-(12, 5, 14, 'Y'),
-(13, 7, 14, 'Y'),
-(14, 8, 14, 'Y'),
-(15, 9, 14, 'Y'),
-(16, 11, 14, 'Y'),
-(17, 12, 20, 'Y');
+(12, 5, 14, 'Y');
 
 -- --------------------------------------------------------
 
@@ -241,9 +242,8 @@ INSERT INTO `kelas_ujian` (`id_klsujian`, `id_ujian`, `id_kelas`, `aktif`) VALUE
 (21, 45, 14, 'Y'),
 (20, 40, 14, 'Y'),
 (19, 39, 14, 'Y'),
-(23, 47, 14, 'Y'),
 (24, 42, 14, 'Y'),
-(25, 48, 20, 'Y');
+(29, 54, 20, 'Y');
 
 -- --------------------------------------------------------
 
@@ -279,14 +279,6 @@ CREATE TABLE `nilai` (
   `status` varchar(191) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `nilai`
---
-
-INSERT INTO `nilai` (`id_nilai`, `id_siswa`, `id_ujian`, `acak_soal`, `jawaban`, `sisa_waktu`, `waktu_selesai`, `jml_benar`, `jml_kosong`, `jml_salah`, `nilai`, `status`) VALUES
-(25, 11, '47', '18', '2', '02:00:00', '18:20:30', 1, 0, 0, '100', 'benar'),
-(26, 12, '47', '18', '3', '02:00:00', '18:22:20', 1, 0, 0, '100', 'benar');
-
 -- --------------------------------------------------------
 
 --
@@ -314,7 +306,8 @@ INSERT INTO `notifikasi_materi` (`id_notifikasi_materi`, `id_siswa`, `id_materi`
 (14, '12', '16'),
 (15, '12', '17'),
 (16, '12', '18'),
-(17, '15', '19');
+(17, '15', '19'),
+(18, '15', '20');
 
 -- --------------------------------------------------------
 
@@ -478,7 +471,14 @@ INSERT INTO `soal` (`id_soal`, `id_ujian`, `soal`, `pilihan_1`, `pilihan_2`, `pi
 (158, 40, '<p>1</p>\r\n', '2', '3', '4', '5', '6', 1, 'Y'),
 (159, 45, '<p>1</p>\r\n', '2', '3', '4', '5', '6', 2, 'Y'),
 (160, 45, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 4, 'Y'),
-(161, 45, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 3, 'Y');
+(161, 45, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 3, 'Y'),
+(162, 51, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y'),
+(163, 51, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 2, 'Y'),
+(164, 51, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y'),
+(165, 52, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y'),
+(166, 52, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y'),
+(167, 52, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y'),
+(168, 54, '<p>1</p>\r\n', '1', '1', '1', '1', '1', 1, 'Y');
 
 -- --------------------------------------------------------
 
@@ -514,7 +514,10 @@ INSERT INTO `soal_essay` (`id_soal`, `id_ujian`, `soal`, `status`) VALUES
 (17, 46, '<p>1</p>\r\n', 'Y'),
 (18, 47, '<p>1 + 1</p>\r\n', 'Y'),
 (19, 48, '<p>asdasdasdsasd</p>\r\n', 'Y'),
-(20, 48, '<p>asdasdasd</p>\r\n', 'Y');
+(20, 48, '<p>asdasdasd</p>\r\n', 'Y'),
+(21, 53, '<p>1</p>\r\n', 'Y'),
+(22, 53, '<p>1</p>\r\n', 'Y'),
+(23, 53, '<p>1</p>\r\n', 'Y');
 
 -- --------------------------------------------------------
 
@@ -708,13 +711,6 @@ CREATE TABLE `tb_materi` (
   `public` enum('Y','N') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `tb_materi`
---
-
-INSERT INTO `tb_materi` (`id_materi`, `judul_materi`, `materi`, `nama_file`, `tipe_file`, `ukuran_file`, `file`, `tgl_entry`, `id_roleguru`, `public`) VALUES
-(19, 'Agama adlah mustlak', '', '1628024162', 'docx', '219045', '../vendor/file/PERANGKAT_1628024162.docx', '2021-08-04', 25, 'Y');
-
 -- --------------------------------------------------------
 
 --
@@ -740,8 +736,7 @@ INSERT INTO `tb_pengumuman` (`id`, `judul`, `isi`, `tgl`, `roleguru`) VALUES
 (9, 'libur TELAH TIBA', 'libur hore', '2021-07-19 13:24:17', '14'),
 (10, 'aaaa', 'asdasd', '2021-07-27 00:11:54', '16'),
 (11, 'Agama adlah mustlak', 'asasdasdasd', '2021-07-27 00:14:09', '15'),
-(12, 'asdasd', 'asdsad', '2021-07-27 00:14:18', '15'),
-(16, 'Agama adlah mustlak', '123123123', '2021-08-04 03:53:46', '25');
+(12, 'asdasd', 'asdsad', '2021-07-27 00:14:18', '15');
 
 -- --------------------------------------------------------
 
@@ -783,7 +778,7 @@ CREATE TABLE `tb_roleguru` (
 --
 
 INSERT INTO `tb_roleguru` (`id_roleguru`, `id_guru`, `id_kelas`, `id_mapel`, `id_semester`, `jadwal_id`) VALUES
-(25, 16, 20, 23, 5, '25');
+(29, 16, 20, 23, 4, '25');
 
 -- --------------------------------------------------------
 
@@ -835,8 +830,8 @@ INSERT INTO `tb_siswa` (`id_siswa`, `nis`, `nama_siswa`, `jk`, `password`, `stat
 (10, '10104001', 'Firizki', 'L', '2f8a199d2aab84b19a71ab38bea6b00981fe9714', 'off', 'Y', '0', 'logo bpn.png', 13, 'Yes'),
 (11, '170030089', 'Putu Ryan Jayendra', 'L', '2f8a199d2aab84b19a71ab38bea6b00981fe9714', 'off', 'Y', '0', '58.png', 14, 'Yes'),
 (12, '170030010', 'Bagas Kayana Putra', 'L', '2f8a199d2aab84b19a71ab38bea6b00981fe9714', 'selesai', 'Y', '0', '232 MURTIKA.png', 14, 'Yes'),
-(13, '170030020', 'Gita Putri', 'P', '782939e4e18a11e08e926f0e89082f4edeadb7a0', 'off', 'Y', '0', '58 SUARTAMA.png', 14, 'Yes'),
-(15, '170030089', 'Putu Ryan Jayendra', 'L', 'fbcc264925997a7c6ff7fe45c511d30acc341ee4', 'off', 'Y', '0', '11.png', 20, 'Yes');
+(13, '170030020', 'Gita Putri', 'P', '2f8a199d2aab84b19a71ab38bea6b00981fe9714', 'off', 'Y', '0', '58 SUARTAMA.png', 14, 'Yes'),
+(15, '170030089', 'Putu Ryan Jayendra', 'L', '2f8a199d2aab84b19a71ab38bea6b00981fe9714', 'Online', 'Y', '0', '11.png', 20, 'Yes');
 
 -- --------------------------------------------------------
 
@@ -867,11 +862,7 @@ INSERT INTO `tb_tugas` (`id_tugas`, `id_jenistugas`, `judul_tugas`, `isi_tugas`,
 (3, 1, 'Agama adlah mustlak', '<p>Bikin makalah 2 bab</p>\r\n', '2021-05-25', 7, 0, 12, 26, 2),
 (4, 2, 'Agama adlah mustlak', '<p>Bikin makalah</p>\r\n', '2021-05-25', 7, 3, 12, 24, 2),
 (5, 1, 'Sistem Informasi Pengelolaan Tamu Charter Dan Driver Freelance Pada Bali Made Tour Berbasis Web.', '<p>asdasdasdasdada</p>\r\n', '2021-05-24', 2, 0, 12, 26, 2),
-(6, 2, 'Membuat makalah tentang bahasa bali', '<p>Buat makalah</p>\r\n', '2021-07-01', 5, 0, 12, 26, 2),
-(7, 2, 'Agama adlah mustlak', '<p>buatkan saya 2 buah sample buku</p>\r\n', '2021-07-27', 1, 3, 16, 24, 1),
-(8, 1, 'Agama adlah mustlak', '<p>aaaa</p>\r\n', '2021-07-26', 1, 0, 16, 34, 2),
-(11, 1, 'Makalah revolusi industri', '<p>makalah revolusi industri</p>\r\n', '2021-07-30', 3, 0, 16, 35, 2),
-(12, 1, 'Agama adlah mustlak', '<p>12345</p>\r\n', '2021-08-04', 3, 0, 16, 23, 5);
+(6, 2, 'Membuat makalah tentang bahasa bali', '<p>Buat makalah</p>\r\n', '2021-07-01', 5, 0, 12, 26, 2);
 
 -- --------------------------------------------------------
 
@@ -929,11 +920,7 @@ CREATE TABLE `ujian` (
 --
 
 INSERT INTO `ujian` (`id_ujian`, `kategori`, `judul`, `tanggal`, `waktu`, `jml_soal`, `acak`, `tipe`, `id_jenis`, `id_guru`, `id_mapel`, `id_semester`, `jam_mulai`, `jam_selesai`) VALUES
-(40, 'pilgan', 'SEJARAH KOMPUTER', '2021-07-31', '02:00:00', 1, 'acak', 0, 5, 16, 35, 2, '13:00', '16:00'),
-(41, 'pilgan', 'Sejarah Litbang', '2021-07-31', '02:00:00', 1, 'acak', 0, 4, 16, 26, 2, '15:00', '16:00'),
-(42, 'essay', 'Pembuatan Website', '2021-07-31', '02:00:00', 1, 'acak', 0, 5, 16, 35, 2, '14:00', '16:00'),
-(47, 'essay', 'Aritmatika', '2021-08-02', '02:00:00', 1, 'acak', 0, 3, 16, 23, 2, '16:00', '18:00'),
-(48, 'essay', 'Agama adlah mustlak', '2021-08-04', '00:00:00', 2, 'acak', 0, 7, 16, 23, 5, '05:00', '05:30');
+(54, 'pilgan', 'Aritmatika', '2021-08-04', '00:00:00', 1, 'acak', 0, 7, 16, 23, 4, '13:50', '15:00');
 
 -- --------------------------------------------------------
 
@@ -1164,7 +1151,7 @@ ALTER TABLE `ujian_essay`
 -- AUTO_INCREMENT untuk tabel `analisis`
 --
 ALTER TABLE `analisis`
-  MODIFY `id_analisis` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id_analisis` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT untuk tabel `chat`
@@ -1188,13 +1175,13 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT untuk tabel `kelas_tugas`
 --
 ALTER TABLE `kelas_tugas`
-  MODIFY `id_klstugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_klstugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas_ujian`
 --
 ALTER TABLE `kelas_ujian`
-  MODIFY `id_klsujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_klsujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas_ujianessay`
@@ -1206,13 +1193,13 @@ ALTER TABLE `kelas_ujianessay`
 -- AUTO_INCREMENT untuk tabel `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `id_nilai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_nilai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `notifikasi_materi`
 --
 ALTER TABLE `notifikasi_materi`
-  MODIFY `id_notifikasi_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_notifikasi_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `notifikasi_pengumuman`
@@ -1236,13 +1223,13 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT untuk tabel `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `id_soal` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT untuk tabel `soal_essay`
 --
 ALTER TABLE `soal_essay`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_admin`
@@ -1296,7 +1283,7 @@ ALTER TABLE `tb_master_semester`
 -- AUTO_INCREMENT untuk tabel `tb_materi`
 --
 ALTER TABLE `tb_materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pengumuman`
@@ -1314,7 +1301,7 @@ ALTER TABLE `tb_perangkat`
 -- AUTO_INCREMENT untuk tabel `tb_roleguru`
 --
 ALTER TABLE `tb_roleguru`
-  MODIFY `id_roleguru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_roleguru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_sekolah`
@@ -1332,7 +1319,7 @@ ALTER TABLE `tb_siswa`
 -- AUTO_INCREMENT untuk tabel `tb_tugas`
 --
 ALTER TABLE `tb_tugas`
-  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `tugas_siswa`
@@ -1344,7 +1331,7 @@ ALTER TABLE `tugas_siswa`
 -- AUTO_INCREMENT untuk tabel `ujian`
 --
 ALTER TABLE `ujian`
-  MODIFY `id_ujian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_ujian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT untuk tabel `ujian_essay`

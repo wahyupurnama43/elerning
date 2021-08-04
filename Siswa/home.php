@@ -22,7 +22,7 @@
   $rujian = mysqli_fetch_array($qujian);
 
   //Jika tidak ada ujian aktif tampilkan pesan
-  if($tujian < 1){
+  if($tujian < 1 || (strtotime('now') <= strtotime($rujian['tanggal'] . ' ' . $rujian['jam_mulai'] . ':00'))){
     echo '
       <div class="alert alert-info">Belum ada ujian Pada Tanggal Sekarang Untuk Kelas Kamu. Jika ada kesalahan hubungi Operator! perbaiki tanggal ujian atau kelas ujian</div>';
   } else {
