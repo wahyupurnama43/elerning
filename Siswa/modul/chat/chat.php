@@ -88,6 +88,10 @@
                   $nama   = $row['nama_guru'];
                   $warna  = 'alert-warning';
                   $url    = '../vendor/images/img_Guru/';
+                  $guru   = mysqli_fetch_assoc(mysqli_query($con, "SELECT foto FROM tb_guru
+                    WHERE id_guru = '$row[id_guru]'
+                  "));
+                  $row['foto']  = $guru['foto'];
                 }
                 ?>
                 <div class="row">
