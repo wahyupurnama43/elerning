@@ -11,11 +11,15 @@
             <form action="" method="post">
               <div class="row">
                 <div class="col-md-5">
-                  <select name="jenis" class="form-control" style="font-weight: bold;background-color: #212121;color: #fff;">
-                    <option value="">- Pilih Jenis Ulangan -</option>
-                    <?php $jenis = mysqli_query($con,"SELECT * FROM tb_jenisujian ORDER BY id_jenis ASC"); 
+                  <select name="mapel" class="form-control" style="font-weight: bold;background-color: #212121;color: #fff;">
+                    <option value="">- Pilih Mata Pelajaran -</option>
+                    <?php 
+                      $jenis  = mysqli_query($con,"SELECT * FROM tb_roleguru 
+                        JOIN tb_master_mapel ON tb_roleguru.id_mapel = tb_master_mapel.id_mapel
+                        WHERE tb_roleguru.id_guru = '$sesi'
+                      "); 
                       foreach ($jenis as $j) {
-                        echo "<option value='$j[id_jenis]'>$j[jenis_ujian]</option>"; 
+                        echo "<option value='$j[id_mapel]'>$j[mapel]</option>"; 
                       }
                     ?> 
                   </select>
