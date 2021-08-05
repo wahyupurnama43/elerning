@@ -9,44 +9,44 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <?php
-              //Cek jumlah ujian pada tanggal sekarang
-              $tgl    = date('Y-m-d');
-              $qujian = mysqli_query($mysqli, "SELECT * FROM ujian t1, kelas_ujian t2 WHERE t1.id_ujian=t2.id_ujian AND t2.id_kelas='$_SESSION[kelas]' AND t2.aktif='Y'");
-              $tujian = mysqli_num_rows($qujian);
-              $rujian = mysqli_fetch_array($qujian);
-            ?>
-            <h4>DAFTAR NILAI</h4>
-            <p class="card-description">
-              <form action="" method="post">
-                <div class="row">
-                  <div class="col-md-5">
-                    <select name="jenis" class="form-control" style="font-weight: bold;background-color: #212121;color: #fff;">
-                      <option value="">- Pilih Jenis Ulangan -</option>
-                      <?php $jenis = mysqli_query($con,"SELECT * FROM tb_jenisujian ORDER BY id_jenis ASC"); 
-                        foreach ($jenis as $j) {
-                          echo "<option value='$j[id_jenis]'>$j[jenis_ujian]</option>"; 
-                        }
-                      ?> 
-                    </select>
-                  </div>
-                  <div class="col-md-5">
-                    <select name="mapel" class="form-control" style="font-weight: bold;background-color: #212121;color: #fff;">
-                      <option value="">- Pilih Mata Pelajaran -</option>
-                      <?php $jenis = mysqli_query($con,"SELECT * FROM tb_master_mapel ORDER BY id_mapel ASC"); 
-                        foreach ($jenis as $j) {
-                          echo "<option value='$j[id_mapel]'>$j[mapel]</option>"; 
-                        }
-                      ?> 
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <button type="submit" name="filter" class="btn btn-info"><i class="fa fa-search"></i> Filter</button>
-                  </div>
+          <?php
+            //Cek jumlah ujian pada tanggal sekarang
+            $tgl    = date('Y-m-d');
+            $qujian = mysqli_query($mysqli, "SELECT * FROM ujian t1, kelas_ujian t2 WHERE t1.id_ujian=t2.id_ujian AND t2.id_kelas='$_SESSION[kelas]' AND t2.aktif='Y'");
+            $tujian = mysqli_num_rows($qujian);
+            $rujian = mysqli_fetch_array($qujian);
+          ?>
+          <h4>DAFTAR NILAI</h4>
+          <p class="card-description">
+            <form action="" method="post">
+              <div class="row">
+                <div class="col-md-5">
+                  <select name="jenis" class="form-control" style="font-weight: bold;background-color: #212121;color: #fff;">
+                    <option value="">- Pilih Jenis Ulangan -</option>
+                    <?php $jenis = mysqli_query($con,"SELECT * FROM tb_jenisujian ORDER BY id_jenis ASC"); 
+                      foreach ($jenis as $j) {
+                        echo "<option value='$j[id_jenis]'>$j[jenis_ujian]</option>"; 
+                      }
+                    ?> 
+                  </select>
                 </div>
-              </form>
-            </p>
+                <div class="col-md-5">
+                  <select name="mapel" class="form-control" style="font-weight: bold;background-color: #212121;color: #fff;">
+                    <option value="">- Pilih Mata Pelajaran -</option>
+                    <?php $jenis = mysqli_query($con,"SELECT * FROM tb_master_mapel ORDER BY id_mapel ASC"); 
+                      foreach ($jenis as $j) {
+                        echo "<option value='$j[id_mapel]'>$j[mapel]</option>"; 
+                      }
+                    ?> 
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <button type="submit" name="filter" class="btn btn-info"><i class="fa fa-search"></i> Filter</button>
+                </div>
+              </div>
+            </form>
+          </p>
+          <div class="table-responsive">
             <?php
               if (isset($_POST['filter'])) { ?>
                 <table class="table table-striped table-hover">
@@ -197,9 +197,9 @@
                 </table>
               <?php }
             ?>
-</div>
+          </div>
+        </div>
+      </div>                  
     </div>
-    </div>                  
-</div>
-</div>
+  </div>
 </div>
