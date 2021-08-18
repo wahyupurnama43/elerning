@@ -81,7 +81,7 @@
                             <td><?=$nli['jml_salah']; ?></td>
                             <td><?=$nli['jml_kosong']; ?></td>
                             <td><?=$nli['nilai']; ?></td>
-                            <?= $du['kategori'] == 'essay' ? "<td bgcolor='#00BCD4' style='color:#fff;'><a class='btn btn-block' style='font-weight:bold;' href='?page=input_nilai&id_siswa=$r[id_siswa]&id_ujian=$_GET[ujian]'>Input Nilai</a></td>" : '' ; ?>
+                            <?= $du['kategori'] == 'essay' ? "<td bgcolor='#00BCD4' style='color:#fff;'><a class='btn btn-block' style='font-weight:bold;' href='?page=input_nilai&id_siswa=$r[id_siswa]&id_ujian=$_GET[ujian]&kelas=$_GET[kelas]'>Input Nilai</a></td>" : '' ; ?>
                           </tr>
                         <?php } 
                       ?>

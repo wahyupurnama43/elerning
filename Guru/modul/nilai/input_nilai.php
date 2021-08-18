@@ -4,7 +4,7 @@
 <div class="row purchace-popup">
     <div class="col-md-12 col-xs-12">
       <span class="d-flex alifn-items-center">
-        <a href="?page=nilai&act=view&ujian=<= $_GET['id_ujian']; ?>&kelas=<= $_GET['kelas_ujian']" class="btn btn-success"><i class="fa fa-plus"></i> Kembali</a>
+        <a href="?page=nilai&act=view&ujian=<?= $_GET['ujian']; ?>&kelas=<?= $_GET['kelas']; ?>" class="btn btn-success"><i class="fa fa-plus"></i> Kembali</a>
         </span>
     </div>
   </div>
