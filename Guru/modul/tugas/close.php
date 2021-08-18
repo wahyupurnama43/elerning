@@ -8,7 +8,7 @@ $close = mysqli_query($con,"UPDATE kelas_tugas SET aktif='N' WHERE id_tugas='$_G
 			setTimeout(function () {
 			swal({
 			title: 'KELAS TELAH DITUTUP',
-			text:  'Terimakasih',
+			text:  '',
 			type: 'success',
 			timer: 3000,
 			showConfirmButton: true

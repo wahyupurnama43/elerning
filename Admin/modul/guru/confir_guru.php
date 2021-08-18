@@ -7,7 +7,7 @@ if ($con) {
 	setTimeout(function () {
 	swal({
 	title: 'CONFIRMASI SUKSES',
-	text:  'Akun telah Aktif !',
+	text:  'AKUN TELAH AKTIF',
 	type: 'success',
 	timer: 3000,
 	showConfirmButton: true

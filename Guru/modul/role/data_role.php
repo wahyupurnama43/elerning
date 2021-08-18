@@ -1,13 +1,13 @@
 <div class="content-wrapper">
-  <h4>Mata Pelajaran</h4>
+  <h4>Jadwal</h4>
   <hr>
   <?php 
     if (empty($role['id_guru'])) { ?>
       <div class="row purchace-popup">
         <div class="col-md-12">
           <span class="d-flex alifn-items-center">
-          <p>Saat ini Anda belum memilih Mata Pelajaran, Silahkan Tambahkan Mata Pelajaran Untuk Memulai .</p>
-          <a href="?page=mapel&act=add" class="btn ml-auto purchase-button"> <i class="fa fa-plus"></i> Tambah Mata Pelajaran</a>
+          <p>Saat ini anda belum memilih jadwal, silahkan tambahkan jadwal.</p>
+          <a href="?page=mapel&act=add" class="btn ml-auto purchase-button"> <i class="fa fa-plus"></i> Tambah Jadwal</a>
           <i class="mdi mdi-close popup-dismiss"></i>
           </span>
         </div>
@@ -16,7 +16,7 @@
       <div class="row purchace-popup">
         <div class="col-md-12">
           <span class="d-flex alifn-items-center">
-          <a href="?page=mapel&act=add" class="btn btn-dark"> <i class="fa fa-plus"></i> Add Mata Pelajaran</a>
+          <a href="?page=mapel&act=add" class="btn btn-dark"> <i class="fa fa-plus"></i> Tambah Jadwal</a>
           </span>
         </div>
       </div>
@@ -24,7 +24,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Mata Pelajaran</h4>
+              <h4 class="card-title">Daftar Jadwal</h4>
               <p class="card-description">
                 <!-- Add class <code>.table</code> -->
               </p>
@@ -65,7 +65,7 @@
 
                           <!-- Button trigger modal -->
                           <button type="button" class="btn btn-dark btn-sm text-danger" data-toggle="modal" data-target="#hapus<?= $row['id_roleguru']; ?>">
-                            <i class="fa fa-trash"></i> Del
+                            <i class="fa fa-trash"></i> Hapus
                           </button>
 
                           <!-- Modal -->
@@ -79,11 +79,11 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  Anda yakin akan menghapus data ini <?= $d['id_roleguru']; ?>?
+                                  Anda yakin akan menghapus jadwal mapel ini <?= $d['id_roleguru']; ?>?
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                  <a href="?page=mapel&act=del&id=<?= $row['id_roleguru']; ?>" class="btn btn-dark btn-sm text-danger"><i class="fa fa-trash"></i> Del </a>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                  <a href="?page=mapel&act=del&id=<?= $row['id_roleguru']; ?>" class="btn btn-dark btn-sm text-danger"><i class="fa fa-trash"></i> Hapus </a>
                                 </div>
                               </div>
                             </div>

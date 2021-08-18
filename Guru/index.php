@@ -40,7 +40,7 @@
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>E-learning | <?=$data['nama_guru']; ?></title>
+      <title>E-Learning | <?=$data['nama_guru']; ?></title>
       <!-- plugins:css -->
       <link rel="stylesheet" href="../vendor/node_modules/mdi/css/materialdesignicons.min.css">
       <link rel="stylesheet" href="../vendor/node_modules/simple-line-icons/css/simple-line-icons.css">
@@ -136,56 +136,56 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php"><img class="menu-icon" src="../vendor/images/menu_icons/01.png" alt="menu icon"><span class="menu-title">DASHBOARD</span></a>
+                <a class="nav-link" href="index.php"><img class="menu-icon" src="../vendor/images/menu_icons/081-online education.png" alt="menu icon" style="width:30px;height:30px;"><span class="menu-title">DASHBOARD</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="?page=chat"><i class="fa fa-wechat text-success menu-icon"></i><span class="menu-title"> Chat</span></a>
+                <a class="nav-link" href="?page=chat"><img class="menu-icon" src="../vendor/images/menu_icons/176-thoughts.png" alt="menu icon" style="width:30px;height:30px;"><span class="menu-title"> CHAT BOX</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="?page=mapel"><img class="menu-icon" src="../vendor/images/menu_icons/02.png" alt="menu icon"> <span class="menu-title">MATA PELAJARAN</span></a>
+                <a class="nav-link" href="?page=mapel"><img class="menu-icon" src="../vendor/images/menu_icons/118-calendar.png" alt="menu icon" style="width:30px;height:30px;"><span class="menu-title">JADWAL</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="?page=materi">
-                  <img class="menu-icon" src="../vendor/images/menu_icons/04.png" alt="menu icon">
+                  <img class="menu-icon" src="../vendor/images/menu_icons/097-open book.png" alt="menu icon" style="width:30px;height:30px;">
                   <span class="menu-title">MATERI</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#tugas" aria-expanded="false" aria-controls="general-pages"> <img class="menu-icon" src="../vendor/images/menu_icons/04.png" alt="menu icon"> <span class="menu-title">TUGAS SISWA</span><i class="menu-arrow"></i>
+                <a class="nav-link" data-toggle="collapse" href="#tugas" aria-expanded="false" aria-controls="general-pages"> <img class="menu-icon" src="../vendor/images/menu_icons/157-study.png" alt="menu icon" style="width:30px;height:30px;"> <span class="menu-title">TUGAS SISWA</span><i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="tugas">
-                  <ul class="nav flex-column sub-menu">
+                <div class="collapse" id="tugas" style="background-color:#c7dcd0;">
+                  <ul class="nav flex-column sub-menu" style="margin-left:-40px;">
                     <li class="nav-item">
-                      <a class="nav-link" href="?page=tugas"><i class="fa fa-gear"></i> &nbsp;&nbsp; ATUR TUGAS</a>
+                      <a class="nav-link" href="?page=tugas"><img class="menu-icon" src="../vendor/images/menu_icons/111-calendar.png" alt="menu icon" style="width:30px;height:30px;"> ATUR TUGAS</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="?page=tugas&act=view"><i class="fa fa-pencil"></i> &nbsp;&nbsp; DATA TUGAS</a>
+                      <a class="nav-link" href="?page=tugas&act=view"><img class="menu-icon" src="../vendor/images/menu_icons/085-folder.png" alt="menu icon" style="width:30px;height:30px;"> DATA TUGAS</a>
                     </li>
                   </ul>
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#evaluasi" aria-expanded="false" aria-controls="general-pages"> <img class="menu-icon" src="../vendor/images/menu_icons/04.png" alt="menu icon"> <span class="menu-title">ULANGAN</span><i class="menu-arrow"></i>
+                <a class="nav-link" data-toggle="collapse" href="#evaluasi" aria-expanded="false" aria-controls="general-pages"> <img class="menu-icon" src="../vendor/images/menu_icons/142-signing.png" alt="menu icon" style="width:30px;height:30px;"> <span class="menu-title">ULANGAN</span><i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="evaluasi">
-                  <ul class="nav flex-column sub-menu">
+                <div class="collapse" id="evaluasi" style="background-color:#c7dcd0;">
+                  <ul class="nav flex-column sub-menu" style="margin-left:-34px;">
                     <li class="nav-item">
-                      <a class="nav-link" href="?page=ujian"><img class="menu-icon" src="../vendor/images/menu_icons/06.png" alt="menu icon"> <span class="menu-title">ULANGAN</span></a>
+                      <a class="nav-link" href="?page=ujian"><img class="menu-icon" src="../vendor/images/menu_icons/163-task.png" alt="menu icon" style="width:25px;height:25px;"> <span class="menu-title">ULANGAN</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="?page=nilai"><img class="menu-icon" src="../vendor/images/menu_icons/04.png" alt="menu icon"> <span class="menu-title">NILAI</span></a>
+                      <a class="nav-link" href="?page=nilai"><img class="menu-icon" src="../vendor/images/menu_icons/164-task.png" alt="menu icon" style="width:25px;height:25px;"> <span class="menu-title">NILAI</span></a>
                     </li>
                   </ul>
                 </div>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="?page=pengumuman"><img class="menu-icon" src="../vendor/images/menu_icons/04.png" alt="menu icon"> <span class="menu-title">PENGUMUMAN</span></a>
+                <a class="nav-link" href="?page=pengumuman"><img class="menu-icon" src="../vendor/images/menu_icons/165-teacher.png" alt="menu icon" style="width:30px;height:30px;"> <span class="menu-title">PENGUMUMAN</span></a>
               </li>
 
               <li class="nav-item purchase-button">
                 <a class="nav-link" href="logout.php">
-                Logout</a>
+                KELUAR</a>
               </li>
             </ul>
           </nav>

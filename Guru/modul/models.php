@@ -67,7 +67,7 @@
         </script>";
     }
   } elseif (isset($_POST['perangkatUpload'])) {
-    $allowed_ext  = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip');
+    $allowed_ext  = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip', 'jpg', 'jpeg', 'png');
     $file_name    = $_FILES['file']['name'];
     @$file_ext    = strtolower(end(explode('.', $file_name)));
     $file_size    = $_FILES['file']['size'];
@@ -284,19 +284,22 @@
           </script>";
       }
     } elseif (isset($_POST['ujianSave'])) {
-      $waktuSelesai  = strtotime($_POST['tanggal'] . ' ' . $_POST['jam_selesai'] . ':00');
-      $waktuMulai     = strtotime($_POST['tanggal'] . ' ' . $_POST['jamMulai'] . ':00');
+      $waktuSelesai = strtotime($_POST['tgl'] . ' ' . $_POST['jam_selesai'] . ':00');
+      $waktuMulai   = strtotime($_POST['tgl'] . ' ' . $_POST['jamMulai'] . ':00');
+
+      // $waktuSelesai = strtotime($_POST['tgl'] . ' 12:15:00');
+      // $waktuMulai   = strtotime($_POST['tgl'] . ' 11:45:00');
       
       $waktu  = $waktuSelesai - $waktuMulai;
 
       $jam    = floor($waktu / (60 * 60));
-      $menit  = $waktu - $jam * (60 * 60);
+      $menit  = ($waktu % (60 * 60)) / 60;
       switch (strlen($jam)) {
         case '1':
           $jam  = '0' . $jam;
           break;
         case '2':
-          $jam  = $jam . ':00';
+          $jam  = $jam;
           break;
         
         default:
@@ -308,7 +311,7 @@
           $menit  = '0' . $menit;
           break;
         case '2':
-          $menit  = $menit . ':00';
+          $menit  = $menit;
           break;
         
         default:
@@ -688,70 +691,79 @@ elseif (isset($_POST['essayEdit'])) {
   } 
   // edit tugas
   elseif (isset($_POST['tugasEdit'])) {
-  	$sql = mysqli_query($con,"UPDATE tb_tugas SET id_jenistugas='$_POST[id_jenis]',judul_tugas='$_POST[judul]',isi_tugas='$_POST[isi_tugas]',tanggal='$_POST[tgl]',waktu='$_POST[waktu]',id_mapel='$_POST[id_mapel]',id_semester='$_POST[id_semester]' WHERE id_tugas='$_POST[ID]' ");
-  	if ($sql) {
-  			echo "
-			<script type='text/javascript'>
-			setTimeout(function () {
-			swal({
-			title: 'Sukses',
-			text:  'Tugas Diubah!',
-			type: 'success',
-			timer: 3000,
-			showConfirmButton: true
-			});     
-			},10);  
-			window.setTimeout(function(){ 
-			window.location.replace('?page=tugas');
-			} ,3000);   
-		</script>";
-  	}
-
-
-  }
-  // simapn kelas Tugas
-elseif (isset($_POST['kelastugasSave'])) {
-
-$kls = $_POST['kelas'];
-$jumlahTerpilih	= count($kls);
-for ($x=0; $x <$jumlahTerpilih ; $x++) { 
-
-	$cek_query= mysqli_query($con,"SELECT * FROM kelas_tugas WHERE id_tugas='$_POST[id]' AND id_kelas='$kls[$x]' ");
-    $cek = mysqli_num_rows($cek_query);
-
-    if($cek > 0){
-    	echo "
-				<script>
-				window.location='?page=tugas&alert=Sudah Pernah Menambahkan Kelas !';
-				</script>
-				
-				";
+    $sql  = mysqli_query($con, "UPDATE tb_tugas 
+      SET id_jenistugas = '$_POST[id_jenis]',
+          judul_tugas   = '$_POST[judul]',
+          isi_tugas     = '$_POST[isi_tugas]',
+          tanggal       = '$_POST[tgl]',
+          waktu         = '$_POST[waktu]',
+          id_mapel      = '$_POST[id_mapel]',
+          id_semester   = '$_POST[id_semester]' 
+      WHERE id_tugas  = '$_POST[ID]' 
+    ");
+    if ($sql) {
+      echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+            title : 'Sukses',
+            text  :  'Tugas Diubah!',
+            type  : 'success',
+            timer : 3000
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=tugas');
+          } ,3000);   
+        </script>";
+      }
     }
-    else {
-      $s=mysqli_query($con, "INSERT INTO kelas_tugas(
-          id_tugas,
-          id_kelas,
-          aktif
-        ) VALUES (
-          '$_POST[id]',
-          '$kls[$x]',
-          'N'
-        )
-      ") or die(mysqli_error($con));
-			if ($s) {
-				echo "
-				<script>
-				window.location='?page=tugas&alert=Berhasil Menambahkan !';
-				</script>
-				
-				";
-		}
+    // simapn kelas Tugas
+    elseif (isset($_POST['kelastugasSave'])) {
+      $kls            = $_POST['kelas'];
+      $jumlahTerpilih = count($kls);
+      for ($x=0; $x <$jumlahTerpilih ; $x++) { 
+        $cek_query  = mysqli_query($con, "SELECT * FROM kelas_tugas 
+          WHERE id_tugas  = '$_POST[id]' 
+          AND id_kelas  = '$kls[$x]' 
+        ");
+        $cek  = mysqli_num_rows($cek_query);
+        if($cek > 0) {
+          echo "
+            <script>
+              window.location='?page=tugas&alert=Sudah Pernah Menambahkan Kelas !';
+            </script>
+          ";
+        } else {
+          $s  = mysqli_query($con, "INSERT INTO kelas_tugas(
+            id_tugas,
+            id_kelas,
+            aktif
+          ) VALUES (
+              '$_POST[id]',
+              '$kls[$x]',
+              'N'
+            )
+          ") or die(mysqli_error($con));
+          if ($s) {
+            echo "
+              <script type='text/javascript'>
+                setTimeout(function () {
+                  swal({
+                  title : 'Sukses',
+                  text  : 'Berhasil menambahkan kelas!',
+                  type  : 'success',
+                  timer : 3000
+                  });     
+                },10);  
+                window.setTimeout(function(){ 
+                  window.location.replace('?page=tugas&alert=Berhasil Menambahkan Kelas!');
+                } ,3000);   
+              </script>
+            ";
+          }
+        }
+      }
     }
-}
-
-
-  }
-
-
- ?>
+?>
 

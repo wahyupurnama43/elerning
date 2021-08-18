@@ -68,7 +68,7 @@
                     <div class="form-group">
                       <label>Waktu *</label>
                       <p class="text-danger">Berapa waktu untuk pengerjaan tugas ?? Ex (<b>03 Hari</b>)</p>
-                      <input type="number" name="waktu" class="form-control"placeholder='(01) Hari'maxlength="2" required style="width: 300px;" value="<?=$d['waktu'] ?>">
+                      <input type="number" name="waktu" class="form-control"placeholder=''maxlength="2" required style="width: 300px;" value="<?=$d['waktu'] ?>">
                     </div>
 
                     <div class="form-group">

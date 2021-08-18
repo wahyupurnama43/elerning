@@ -7,7 +7,7 @@ if ($del) {
 	setTimeout(function () {
 	swal({
 	title: 'SUKSES',
-	text:  'Data Telah dihapus !!',
+	text:  'KELAS BERHASIL DI HAPUS',
 	type: 'success',
 	timer: 3000,
 	showConfirmButton: true

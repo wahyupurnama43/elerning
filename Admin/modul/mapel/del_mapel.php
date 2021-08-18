@@ -6,7 +6,7 @@
         setTimeout(function () {
           swal({
             title : 'SUKSES',
-            text  :  'Data Telah dihapus !!',
+            text  :  'MAPEL BERHASIL DIHAPUS',
             type  : 'success',
             timer : 3000
           });     

@@ -6,8 +6,8 @@ $sql=mysqli_query($con,"DELETE FROM tb_tugas WHERE id_tugas='$_GET[idt]' ");
 	<script type='text/javascript'>
 	setTimeout(function () {
 	swal({
-	title: 'Sukses',
-	text:  'Data Telah Terhapus !',
+	title: 'SUKSES',
+	text:  'TUGAS TELAH TERHAPUS',
 	type: 'success',
 	timer: 3000,
 	showConfirmButton: true

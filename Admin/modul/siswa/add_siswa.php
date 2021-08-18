@@ -1,4 +1,3 @@
-
 <div class="content-wrapper">
   <h4> <b>User</b> <small class="text-muted">/ Tambah Siswa</small></h4>
   <hr>
@@ -11,8 +10,8 @@
               <h4 class="card-title">Form Tambah Siswa</h4>
               <form class="forms-sample" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                  <label>NIS/NISN</label>
-                  <input name="nis" type="text" class="form-control" placeholder="NIS/NISN" maxlength="15" onkeypress="return hanyaAngka(event)" required>
+                  <label>NIS</label>
+                  <input name="nis" type="text" class="form-control" placeholder="Nomor Induk Siswa" maxlength="15" onkeypress="return hanyaAngka(event)" required>
                 </div>
                 <div class="form-group">
                   <label>Nama Lengkap Siswa</label>
@@ -48,8 +47,8 @@
                   <label>Foto</label>
                   <input name="foto" type="file" class="form-control" required>
                 </div>
-                <button name="saveGuru" type="submit" class="btn btn-success mr-2">Submit</button>
-                <a href="?page=siswa" class="btn btn-light">Cancel</a>
+                <button name="saveGuru" type="submit" class="btn btn-success mr-2">Simpan</button>
+                <a href="?page=siswa" class="btn btn-light">Batal</a>
               </form>
               <?php 
                 if (isset($_POST['saveGuru'])) {
@@ -67,7 +66,7 @@
                           setTimeout(function () {
                             swal({
                               title             : 'Sukses',
-                              text              : 'Data Berhasil ditambah',
+                              text              : 'DATA BERHASIL DISIMPAN',
                               type              : 'success',
                               timer             : 3000,
                               showConfirmButton : true

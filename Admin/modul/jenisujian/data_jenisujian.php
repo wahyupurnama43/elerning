@@ -1,12 +1,12 @@
 <div class="content-wrapper">
-  <h4> <b>Master</b> <small class="text-muted">/Jenis Ulangan</small></h4>
+  <h4> <b>Master</b> <small class="text-muted">/ Jenis Ulangan</small></h4>
   <hr>
   <div class="row">
     <div class="col-md-10">
       <div class="card">
         <div class="card-body">
           <p class="card-description">
-            <a data-toggle="modal" data-target="#add" class="btn btn-info text-white pull-right"><i class="fa fa-plus"></i> Tambah Ulangan</a> <br>
+            <a data-toggle="modal" data-target="#add" class="btn btn-info text-white pull-right"><i class="fa fa-plus"></i> Tambah Jenis Ulangan</a> <br>
           </p>
           <h4 class="card-title">Data Jenis Ulangan</h4>
             <div class="table-responsive">
@@ -59,7 +59,7 @@
                                               setTimeout(function () {
                                                 swal({
                                                   title : 'SUKSES',
-                                                  text  :  'Data Telah diubah !!',
+                                                  text  :  'ULANGAN BERHASIL DIUBAH',
                                                   type  : 'success'
                                                 });     
                                               },10);  
@@ -89,7 +89,7 @@
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    Apakah anda yakin akan menghapus ulangan ini?
+                                    Apakah anda yakin akan menghapus jenis ulangan ini?
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -118,7 +118,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                     <label for="mapel"> Jenis Ulangan</label>
-                    <input type="text" id="mapel" name="jenis" class="form-control" placeholder="Jenis Ulangan" .." required>                    
+                    <input type="text" id="mapel" name="jenis" class="form-control" placeholder="Ulangan" .." required>                    
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -135,7 +135,7 @@
                         setTimeout(function () {
                         swal({
                         title: 'SUKSES',
-                        text:  'Data Tersimpan !!',
+                        text:  'ULANGAN BERHASIL DISIMPAN',
                         type: 'success',
                         timer: 3000,
                         showConfirmButton: true

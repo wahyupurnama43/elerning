@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                       <label for="judul">Judul Materi</label>
-                      <input type="text" id="judul" name="judul" class="form-control" placeholder="Judul Materi .." required>
+                      <input type="text" id="judul" name="judul" class="form-control" placeholder="Judul Materi" required>
                     </div>
                     <?php 
                       if ($_GET['TYPE']=='Manual') { ?>
@@ -63,7 +63,7 @@
                                 Apakah anda yakin akan menambah materi?
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                 <button type="submit" name="materiSave" class="btn btn-info mr-2">Simpan</button>
                               </div>
                             </div>
@@ -72,7 +72,7 @@
                         <a href="javascript:history.back()" class="btn btn-danger">Batal</a>
                       <?php } else { ?>
                         <div class="form-group">
-                          <label>File Perangkat</label>
+                          <label>File Materi</label>
                           <p>
                             File yang bisa di Upload hanya file dengan ekstensi .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .rar, .exe, .zip dan besar file (file size) maksimal hanya <b>2 MB</b>.
                           </p>
@@ -96,7 +96,7 @@
                                 Apakah anda yakin akan menambah materi?
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                 <button type="submit" name="materiFile" class="btn btn-info mr-2">Simpan</button>
                               </div>
                             </div>
@@ -107,7 +107,7 @@
                     ?>
                   </form>
                 <?php } else { ?>
-                  <div class="alert alert-warning">Anda belum mempunyai mata pelajaran, silahkan pilih terlebih dahulu <a href="?page=mapel&act=add" class="btn btn-primary">Disini</a></div>
+                  <div class="alert alert-warning">Anda belum memilih mata pelajaran yang diajar, silahkan pilih terlebih dahulu <a href="?page=mapel&act=add" class="btn btn-primary">Disini</a></div>
                 <?php }
               ?>
             </div>

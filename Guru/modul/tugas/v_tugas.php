@@ -1,14 +1,17 @@
 <div class="content-wrapper">
-  <h4><b>Tugas Siswa</b> <small class="text-muted">/</small></h4>
-  <hr>
+  <h4><b>Tugas Siswa</b> <small class="text-muted"></small></h4>
+  <div class="row purchace-popup">
+    <div class="col-md-12 col-xs-12">
+      <span class="d-flex alifn-items-center">
+        <a href="?page=tugas&act=add" class="btn btn-dark text-white"><i class="fa fa-plus"></i>  Tambah Tugas</a>
+      </span>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Data Tugas</h4>
-          <p class="card-description">
-            <a href="?page=tugas&act=add" class="btn btn-dark text-white"><i class="fa fa-plus"></i>Tambah Tugas</a>
-          </p> 
           <p class="card-description">
             <form action="" method="post">
               <div class="row">
@@ -47,7 +50,8 @@
           </p>
           <?= $_GET['alert'] ? '<div class="alert alert-success" role="alert">'.@$_GET['alert'].'</div>' : ''; ?>
           <?php
-            if ($_POST['filter']) { ?>
+            if ($_POST['mapel']) { 
+              ?>
               <div class="table-responsive"> 
                 <table class="table" id="data">
                   <thead>
@@ -69,8 +73,8 @@
                         INNER JOIN tb_master_semester ON tb_tugas.id_semester=tb_master_semester.id_semester
                         INNER JOIN tb_roleguru ON tb_tugas.id_mapel = tb_roleguru.id_mapel
                         WHERE tb_roleguru.id_guru  = '$sesi' 
-                        AND tb_tugas.id_mapel = '$_GET[mapel]'
-                        AND tb_tugas.id_semester  = '$_GET[semester]'
+                        AND tb_tugas.id_mapel = '$_POST[mapel]'
+                        AND tb_tugas.id_semester  = '$_POST[semester]'
                       ");
                       foreach ($sql as $d) { ?>
                         <tr>
@@ -156,7 +160,7 @@
                                       </table>
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                                     </div>
                                   </form>
                                 </div>
@@ -179,7 +183,7 @@
                                       <div class="modal-header">
                                         <h4 class="modal-title">
                                           <center>
-                                            Apakah Anda Ingin <b>Non Aktifkan</b> TUGAS Ini <br> Sekarang ?
+                                            Apakah anda ingin <b>non aktifkan</b> tugas ini <br> sekarang ?
                                           </center>
                                         </h4>
                                       </div>
@@ -202,7 +206,7 @@
                                         <div class="modal-header">
                                           <h4 class="modal-title">
                                             <center>
-                                              Apakah Anda Ingin <b>Mengaktifkan</b> TUGAS Ini Sekarang ?
+                                              apakah anda ingin <b>mengaktifkan</b> tugas ini sekarang ?
                                             </center>
                                           </h4>
                                         </div>
@@ -239,8 +243,8 @@
                                     Apakah anda yakin akan menghapus data tugas?
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <a href="?page=tugas&act=del&idt=<?=$d['id_tugas']; ?>" class="btn btn-dark text-danger"><i class="fa fa-trash"></i> </a>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                    <a href="?page=tugas&act=del&idt=<?=$d['id_tugas']; ?>" class="btn btn-dark text-danger"><i class="fa fa-trash"></i></a>
                                   </div>
                                 </div>
                               </div>
@@ -258,3 +262,4 @@
       </div>
     </div>
   </div>
+</div>

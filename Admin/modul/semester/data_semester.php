@@ -1,20 +1,20 @@
 <div class="content-wrapper">
-  <h4> <b>Master</b> <small class="text-muted">/ semester</small></h4>
+  <h4> <b>Master</b> <small class="text-muted">/ Semester</small></h4>
   <hr>
   <div class="row">
     <div class="col-md-10">
       <div class="card">
         <div class="card-body">
           <p class="card-description">
-            <a data-toggle="modal" data-target="#add" class="btn btn-info text-white pull-right"><i class="fa fa-plus"></i> Tambah semester</a> <br>
+            <a data-toggle="modal" data-target="#add" class="btn btn-info text-white pull-right"><i class="fa fa-plus"></i> Tambah Semester</a> <br>
           </p>
-          <h4 class="card-title">Data semester</h4>
+          <h4 class="card-title">Data Semester</h4>
             <div class="table-responsive">
               <table class="table table-condensed table-striped table-hover" id="data">
                 <thead class="bg-dark text-white">
                   <tr>
                     <th class="text-center">No.</th> 
-                    <th class="text-center">Nama semester</th>  
+                    <th class="text-center">Nama Semester</th>  
                     <th class="text-center">Opsi</th>                     
                   </tr>                        
                 </thead>  
@@ -33,11 +33,11 @@
                           <div class="modal fade" id="edit<?=$d['id_semester']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
-                                <div class="modal-header"><h4 class="modal-title"> Edit semester </h4></div>
+                                <div class="modal-header"><h4 class="modal-title"> Edit Semester </h4></div>
                                   <form action="" method="post">
                                     <div class="modal-body">
                                       <div class="form-group">
-                                        <label for="semester"> Nama semester</label>
+                                        <label for="semester"> Nama Semester</label>
                                         <input type="hidden" name="id" value="<?=$d['id_semester']?>"> 
                                         <input type="text" id="semester" name="semester" class="form-control" value="<?=$d['semester']?>">  
                                       </div>
@@ -59,7 +59,7 @@
                                               setTimeout(function () {
                                                 swal({
                                                   title : 'SUKSES',
-                                                  text  :  'Data Telah diubah !!',
+                                                  text  :  'SEMESTER BERHASIL DIUBAH',
                                                   type  : 'success'
                                                 });     
                                               },10);  
@@ -113,12 +113,12 @@
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header"><h4 class="modal-title"> Tambah semester </h4></div>
+            <div class="modal-header"><h4 class="modal-title"> Tambah Semester </h4></div>
             <form action="" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                    <label for="semester"> Nama semester</label>
-                    <input type="text" id="semester" name="semester" class="form-control" placeholder="Nama semester ..">                    
+                    <label for="semester"> Nama Semester</label>
+                    <input type="text" id="semester" name="semester" class="form-control" placeholder="Semester">                    
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -135,7 +135,7 @@
                         setTimeout(function () {
                         swal({
                         title: 'SUKSES',
-                        text:  'Data Tersimpan !!',
+                        text:  'SEMESTER BERHASIL DISIMPAN',
                         type: 'success',
                         timer: 3000,
                         showConfirmButton: true

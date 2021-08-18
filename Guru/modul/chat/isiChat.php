@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-  <h3><b>Dashboard</b><small class="text-muted">/Guru</small></h3>
+  <h3><b>Chat Box</b><small class="text-muted"></h3>
   <hr>
   <div class="row">
     <!-- style="overflow:scroll;height:600px;border-radius:10px;background-color:#fff;border:7px solid;" -->

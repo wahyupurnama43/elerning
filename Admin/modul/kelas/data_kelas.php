@@ -56,7 +56,7 @@
                                           setTimeout(function () {
                                             swal({
                                               title             : 'SUKSES',
-                                              text              :  'Data Telah diubah !!',
+                                              text              :  'KELAS BERHASIL DIUBAH',
                                               type              : 'success',
                                               timer             : 3000,
                                               showConfirmButton : true
@@ -118,7 +118,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="kelas"> Nama Kelas</label>
-              <input type="text" id="kelas" name="kelas" class="form-control" placeholder="Nama Kelas .." required>                    
+              <input type="text" id="kelas" name="kelas" class="form-control" placeholder="Kelas" required>                    
             </div>
           </div>
           <div class="modal-footer">
@@ -135,7 +135,7 @@
                   setTimeout(function () {
                     swal({
                       title : 'SUKSES',
-                      text  :  'Data Tersimpan !!',
+                      text  :  'KELAS BERHASIL DISIMPAN',
                       type  : 'success',
                       timer : 3000
                     });     

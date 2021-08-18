@@ -5,9 +5,9 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title text-center">Profile</h4>
+              <h4 class="card-title text-center">PROFIL</h4>
               <p class="card-description text-center">
-                <img src="../vendor/images/img_Guru/<?=$data['foto']; ?>" style="border:3px solid black;width: 100px;height: 100px;border-radius: 7px;"/>
+                <img src="../vendor/images/img_Guru/<?=$data['foto']; ?>" style="width: 100px;height: 100px;"/>
               </p>
               <form class="forms-sample" method="post" action="" enctype="multipart/form-data">
                 <input type="hidden"  name="ID" value="<?=$data['id_admin'] ?>">
@@ -59,8 +59,8 @@
                         <script type='text/javascript'>
                           setTimeout(function () {
                             swal({
-                              title : 'Sukses',
-                              text  : 'Profile Berhasil diperbarui',
+                              title : 'SUKSES',
+                              text  : 'PROFIL BERHASIL DIPERBAHARUI',
                               type  : 'success',
                               timer : 3000
                             });     
@@ -75,8 +75,8 @@
                       <script type='text/javascript'>
                         setTimeout(function () {
                           swal({
-                            title : 'Gagal',
-                            text  : 'Password Lama tidak cocok',
+                            title : 'GAGAL',
+                            text  : 'PASSWORD LAMA TIDAK COCOK',
                             type  : 'error',
                             timer : 3000
                           });     

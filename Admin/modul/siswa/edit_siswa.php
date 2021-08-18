@@ -14,7 +14,7 @@
               <h4 class="card-title">Form Edit Siswa</h4>
               <form class="forms-sample" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                  <label>NIS/NISN</label>
+                  <label>NIS</label>
                   <input name="nis" type="text" class="form-control" value="<?=$d['nis'] ?>" required>
                   <input type="hidden" name="ID" value="<?=$d['id_siswa'] ?>">
                 </div>
@@ -61,7 +61,7 @@
                   <label>Foto</label>
                   <input name="foto" type="file" class="form-control">
                 </div>
-                <button name="updateSiswa" type="submit" class="btn btn-success mr-2">Submit</button>
+                <button name="updateSiswa" type="submit" class="btn btn-success mr-2">Simpan</button>
 
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#exampleModal">
@@ -82,13 +82,13 @@
                       Anda mereset password dari akun ini?
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                       <button name="resetPassword" type="submit" class="btn btn-danger mr-2">Reset Password</button>
                     </div>
                   </div>
                 </div>
               </div>
-                <a href="?page=siswa" class="btn btn-light">Cancel</a>
+                <a href="?page=siswa" class="btn btn-light">Batal</a>
               </form>
               <?php 
                 if (isset($_POST['updateSiswa'])) {
@@ -104,7 +104,7 @@
                         setTimeout(function () {
                           swal({
                             title : 'Sukses',
-                            text  : 'Data Berhasil diperbarui',
+                            text  : 'AKUN BERHASIL DIUBAH',
                             type  : 'success',
                             timer : 3000
                           });     
@@ -126,7 +126,7 @@
                           setTimeout(function () {
                             swal({
                               title             : 'Sukses',
-                              text              : 'Password Berhasil Direset',
+                              text              : 'PASSWORD BERHASIL DIUBAH',
                               type              : 'success',
                               timer             : 3000,
                               showConfirmButton : true

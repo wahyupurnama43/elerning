@@ -33,7 +33,7 @@
 
 ?>
 <div class="content-wrapper">
-  <h3><b>Dashboard</b><small class="text-muted">/Guru</small></h3>
+  <h3><b>Dashboard</b><small class="text-muted"> / Guru</small></h3>
   <hr>
   <div class="row">
     <div class="col-md-12 col-xs-12">
@@ -43,17 +43,17 @@
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="fa fa-globe icon-lg"></i>
+                  <img class="menu-icon" src="../vendor/images/menu_icons/118-calendar.png" alt="menu icon" style="width:50px;height:50px;">
                 </div>
                 <div class="float-right">
-                  <p class="card-text text-right font-weight-bold">Jumlah Pelajaran</p>
+                  <p class="card-text text-right font-weight-bold text-white">Jumlah Jadwal</p>
                   <div class="fluid-container">
-                    <h3 class="card-title font-weight-bold text-center mb-0"><?=$mapel; ?></h3>
+                    <h3 class="card-title font-weight-bold text-center mb-0 text-white"><?=$mapel; ?></h3>
                   </div>
                 </div>
               </div>
               <hr>            
-              <a href="?page=mapel" class="text-white"><i class="fa fa-chevron-circle-right text-white" aria-hidden="true"></i> Views</a>           
+              <a href="?page=mapel" class="text-white"><i class="fa fa-chevron-circle-right text-white" aria-hidden="true"></i> Lihat</a>           
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="fa fa-file-text-o icon-lg text-white"></i>
+                  <img class="menu-icon" src="../vendor/images/menu_icons/157-study.png" alt="menu icon" style="width:50px;height:50px;">
                 </div>
                 <div class="float-right">
                   <p class="card-text text-right font-weight-bold text-white">Jumlah Tugas</p>
@@ -72,7 +72,7 @@
                 </div>
               </div>
               <hr>            
-              <a href="?page=tugas&act=view" class="text-white"><i class="fa fa-chevron-circle-right text-white" aria-hidden="true"></i> Views</a>           
+              <a href="?page=tugas&act=view" class="text-white"><i class="fa fa-chevron-circle-right text-white" aria-hidden="true"></i> Lihat</a>           
             </div>
           </div>
         </div>
@@ -81,7 +81,7 @@
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="fa fa-file-text-o icon-lg text-white"></i>
+                  <img class="menu-icon" src="../vendor/images/menu_icons/097-open book.png" alt="menu icon" style="width:50px;height:50px;">
                 </div>
                 <div class="float-right">
                   <p class="card-text text-right font-weight-bold text-white">Jumlah Materi</p>
@@ -91,7 +91,7 @@
                 </div>
               </div>
               <hr>            
-                <a href="?page=materi" class="text-white"><i class="fa fa-chevron-circle-right text-white" aria-hidden="true"></i> Views</a>           
+                <a href="?page=materi" class="text-white"><i class="fa fa-chevron-circle-right text-white" aria-hidden="true"></i> Lihat</a>           
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
             <div class="card-body">
               <div class="clearfix">
                 <div class="float-left">
-                  <i class="fa fa-pencil icon-lg text-white"></i>
+                  <img class="menu-icon" src="../vendor/images/menu_icons/142-signing.png" alt="menu icon" style="width:50px;height:50px;">
                 </div>
                 <div class="float-right">
                   <p class="card-text text-right font-weight-bold text-white">Jumlah Ulangan</p>
@@ -111,7 +111,7 @@
                 </div>
               </div>
               <hr>            
-                <a href="?page=ujian" class="text-white"><i class="fa fa-chevron-circle-right text-white" aria-hidden="true"></i> Views</a>           
+                <a href="?page=ujian" class="text-white"><i class="fa fa-chevron-circle-right text-white" aria-hidden="true"></i> Lihat</a>           
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-  <h4> <b>User</b> <small class="text-muted">/ Guru</small></h4>
+  <h4> <b>Pengguna</b> <small class="text-muted">/ Guru</small></h4>
   <hr>
   <div class="row">
     <div class="col-md-12">
@@ -12,14 +12,13 @@
           <h4 class="card-title">Data Guru</h4>
           <div class="table-responsive">
             <table class="table table-condensed table-striped table-hover" id="data">
-              <thead>
+              <thead class="bg-dark text-white">
                 <tr>
                   <th class="text-center">No.</th> 
-                  <th class="text-center">NIP/NIG</th> 
+                  <th class="text-center">NIP</th> 
                   <th class="text-center">Nama Guru</th> 
                   <th class="text-center">Username</th>
                   <th class="text-center">Foto</th>
-                  <th class="text-center">Status</th>
                   <th class="text-center">Opsi</th>                     
                 </tr>                        
               </thead>  
@@ -34,15 +33,6 @@
                     <td class="text-center"><?=$d['nama_guru']?> </td>
                     <td class="text-center"><?=$d['username']?> </td>
                     <td class="text-center"><img src="../vendor/images/img_Guru/<?=$d['foto']?>" class="img-thumbnail" style="width:50px;height:50px;"> </td>
-                    <td class="text-center">
-                      <?php
-                        if ($d['status']=='Y') {
-                          echo "<a href=''><b class='badge badge-success'>Aktif</b></a>";
-                        } else {
-                          echo "<a href=''><b class='badge badge-danger'>Bloked</b></a>";
-                        }
-                      ?> 
-                    </td>
                     <td class="text-center">
                       <a href="?page=guru&act=edit&id=<?=$d['id_guru']?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
 

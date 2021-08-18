@@ -1,5 +1,6 @@
 <?php
   session_start();
+  date_default_timezone_set('Asia/Ujung_Pandang');
   include '../config/db.php';
   if (@$_SESSION['Siswa']) {
     if (@$_SESSION['Siswa']) {
@@ -256,7 +257,7 @@
                   <a class="nav-link" href="index.php"><img class="menu-icon" src="../vendor/images/menu_icons/01.png" alt="menu icon"><span class="menu-title">DASHBOARD</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="?page=chat"><i class="fa fa-wechat text-success menu-icon"></i><span class="menu-title"> Chat</span></a>
+                  <a class="nav-link" href="?page=chat"><i class="fa fa-wechat text-success menu-icon"></i><span class="menu-title"> CHAT BOX</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="?page=materi"><img class="menu-icon" src="../vendor/images/menu_icons/04.png" alt="menu icon">MATERI</a>
@@ -270,7 +271,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="?page=informasi">
                     <img class="menu-icon" src="../vendor/images/menu_icons/04.png" alt="menu icon"> 
-                    <span class="menu-title">INFORMASI</span>
+                    <span class="menu-title">JADWAL</span>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -281,7 +282,7 @@
                 </li>
                 <hr>
                 <li class="nav-item purchase-button">
-                  <a class="nav-link" href="logout.php?ID=<?php echo $data['id_siswa'] ?>">Keluar</a>
+                  <a class="nav-link" href="logout.php?ID=<?php echo $data['id_siswa'] ?>">KELUAR</a>
                 </li>
               </ul>
             </nav>

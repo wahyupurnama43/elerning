@@ -18,9 +18,9 @@ foreach ($sql as $d) ?>
               </p>
               <input type="file" id="logo" name="logo"> 
               <p class="text-danger">
-                Ukuran Logo maxsimal <em><b>54 x 45</b></em> pixel
+                Ukuran Logo maksimal <em><b>54 x 45</b></em> pixel
               </p>    
-                <label for="textlogo">Text Logo</label>
+                <label for="textlogo">Nama Aplikasi</label>
               <input type="text" name="textlogo" id="textlogo" class="form-control" value="<?php echo $d['textlogo']; ?>" required>         
             </div>
             <div class="form-group">
@@ -37,7 +37,7 @@ foreach ($sql as $d) ?>
             </div>
                 <div class="form-group">
               <button type="submit" name="set" class="btn btn-light">
-                <i class="fa fa-pencil"></i> Update                  
+                <i class="fa fa-pencil"></i> Perbaharui                  
               </button>
             </div>
           </form>

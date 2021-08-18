@@ -39,8 +39,8 @@
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center" style="background-color: #1991eb;">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background: #4d9be6;">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center" style="background-color: #4d9be6;">
         <a class="navbar-brand brand-logo" href="index.php" style="font-family:Aegyptus;font-weight: bold;font-size: 30px;">
           <img src="../vendor/images/<?=$apl['logo'];?>" alt="logo" style="height: 45px;width: 45px;border-radius: 10px;">
           <!-- <i class="fa fa-graduation-cap"></i> --><b><?=$apl['textlogo'];?></b>
@@ -49,12 +49,12 @@
           <!-- <img src="../vendor/images/logo.png" alt="logo"/> -->
         </a>
       </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center">
+      <div class="navbar-menu-wrapper d-flex align-items-center" style="background-color: #4d9be6;">
         <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
           <li class="nav-item" style="width: 400px;">
             <a href="#" style="color: #fff;text-decoration: none;">
               <!-- <img src="../vendor/images/smk.png" style="height: 40px;border-radius:10px;"> &nbsp; -->
-              <b><?=$apl['nama_sekolah'];?></b>
+            <b><?=$apl['nama_sekolah'];?></b>
             </a>
           </li>
         </ul>
@@ -70,86 +70,89 @@
         <ul class="nav">
           <li class="nav-item nav-profile">
             <div class="nav-link">
-              <div class="profile-image"> <img src="../vendor/images/img_Guru/<?=$data['foto']; ?>" alt="image" style="border:3px solid black;"/> <span class="online-status online"></span> </div>
+              <div class="profile-image"> <img src="../vendor/images/img_Guru/<?=$data['foto']; ?>" alt="image" style="border-radius: 0px;"/> <span class="online-status online"></span> </div>
               <div class="profile-name">
                 <p class="name"><?=$data['nama_lengkap']; ?></p>
-                <p class="designation">Administrasion</p>
+                <p class="designation">Admin</p>
               </div>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.php"><img class="menu-icon" src="../vendor/images/menu_icons/01.png" alt="menu icon"><span class="menu-title">DASHBOARD</span></a>
+            <a class="nav-link" href="index.php"><img class="menu-icon" src="../vendor/images/menu_icons/027-tutorial.png" alt="menu icon" style="width:30px;height:30px;"><span class="menu-title">DASHBOARD</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#masterData" aria-expanded="false" aria-controls="general-pages"> <i class="fa fa-database"style="font-size:20px;"></i> &nbsp; <span class="menu-title"> DATA MASTER </span><i class="menu-arrow"></i>
+            <a class="nav-link" data-toggle="collapse" href="#masterData" aria-expanded="false" aria-controls="general-pages"><img class="menu-icon" src="../vendor/images/menu_icons/108-folder1.png" alt="menu icon" style="width:30px;height:30px;"><span class="menu-title"> DATA MASTER </span><i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="masterData" style="background-color:#212121;">
-              <ul class="nav flex-column sub-menu">
+            <div class="collapse" id="masterData" style="background-color:#c7dcd0;">
+              <ul class="nav flex-column sub-menu" style="margin-left:-34px;">
                 <p></p>
                 <li class="nav-item">
-                  <a class="nav-link" href="?page=kelas" style="color:#fff;">
-                    <i class="fa fa-angle-double-right" style="font-size:20px;color:#fff;color:#fff;"></i> &nbsp;
+                  <a class="nav-link" href="?page=kelas" style="color:#000;">
+                    <img class="menu-icon" src="../vendor/images/menu_icons/tag.png" alt="menu icon" style="width:15px;height:15px;">
                     <span class="menu-title">Master Kelas</span>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="?page=semester" style="color:#fff;">
-                    <i class="fa fa-angle-double-right" style="font-size:20px;color:#fff;"></i> &nbsp;<span class="menu-title">Master Semester</span>
+                  <a class="nav-link" href="?page=semester" style="color:#000;">
+                    <img class="menu-icon" src="../vendor/images/menu_icons/tag.png" alt="menu icon" style="width:15px;height:15px;"><span class="menu-title">Master Semester</span>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="?page=mapel" style="color:#fff;">
-                    <i class="fa fa-angle-double-right" style="font-size:20px;color:#fff;"></i> &nbsp;<span class="menu-title">Master Mata Pelajaran</span>
+                  <a class="nav-link" href="?page=mapel" style="color:#000;">
+                    <img class="menu-icon" src="../vendor/images/menu_icons/tag.png" alt="menu icon" style="width:15px;height:15px;"><span class="menu-title">Master Mata Pelajaran</span>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="?page=jenisujian" style="color:#fff;">
-                    <i class="fa fa-angle-double-right" style="font-size:20px;color:#fff;"></i> &nbsp;<span class="menu-title">Master Jenis Ulangan</span>
+                  <a class="nav-link" href="?page=jenisujian" style="color:#000;">
+                    <img class="menu-icon" src="../vendor/images/menu_icons/tag.png" alt="menu icon" style="width:15px;height:15px;"><span class="menu-title">Master Jenis Ulangan</span>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="?page=jadwal" style="color:#fff;">
-                    <i class="fa fa-angle-double-right" style="font-size:20px;color:#fff;"></i> &nbsp;<span class="menu-title">Master Jadwal</span>
+                  <a class="nav-link" href="?page=jadwal" style="color:#000;">
+                    <img class="menu-icon" src="../vendor/images/menu_icons/tag.png" alt="menu icon" style="width:15px;height:15px;"><span class="menu-title">Master Jadwal</span>
                   </a>
                 </li>
+                <p></p>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#evaluasi" aria-expanded="false" aria-controls="general-pages"> <i class="fa fa-spin fa-gear icon-md"style="font-size:20px;"></i> &nbsp; <span class="menu-title"> DATA PENGGUNA </span><i class="menu-arrow"></i>
+            <a class="nav-link" data-toggle="collapse" href="#evaluasi" aria-expanded="false" aria-controls="general-pages"><img class="menu-icon" src="../vendor/images/menu_icons/108-folder.png" alt="menu icon" style="width:30px;height:30px;"><span class="menu-title">DATA PENGGUNA</span><i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="evaluasi" style="background-color:#212121;">
-              <ul class="nav flex-column sub-menu">
+            <div class="collapse" id="evaluasi" style="background-color:#c7dcd0;">
+              <ul class="nav flex-column sub-menu" style="margin-left:-34px;">
+              <p></p>
                 <li class="nav-item">
-                  <a class="nav-link" href="?page=guru" style="color:#fff;">
-                    <i class="fa fa-user-circle" style="font-size:20px;color:#fff;"></i> &nbsp;&nbsp;
+                  <a class="nav-link" href="?page=guru" style="color:#000;">
+                    <img class="menu-icon" src="../vendor/images/menu_icons/115-professor1.png" alt="menu icon" style="width:25px;height:25px;">
                     <span class="menu-title">GURU</span>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="?page=siswa" style="color:#fff;">
-                    <i class="fa fa-user-circle-o" style="font-size:20px;color:#fff;"></i> &nbsp;&nbsp;<span class="menu-title">SISWA</span>
+                  <a class="nav-link" href="?page=siswa" style="color:#000;">
+                     <img class="menu-icon" src="../vendor/images/menu_icons/155-student.png" alt="menu icon" style="width:25px;height:25px;"><span class="menu-title">SISWA</span>
                   </a>
                 </li>
+                <p></p>
               </ul>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="?page=setting">
-              <i class="fa fa-gears" style="font-size:20px;"></i> &nbsp;&nbsp;<span class="menu-title">UBAH APLIKASI</span>
+              <img class="menu-icon" src="../vendor/images/menu_icons/170-technology.png" alt="menu icon" style="width:30px;height:30px;"><span class="menu-title">UBAH APLIKASI</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="?page=setting&act=user">
-              <i class="fa fa-user" style="font-size:20px;"></i> &nbsp;&nbsp;<span class="menu-title">UBAH PROFILE ADMIN</span>
+            <img class="menu-icon" src="../vendor/images/menu_icons/094-online education.png" alt="menu icon" style="width:30px;height:30px;"></i><span class="menu-title">UBAH PROFILE ADMIN</span>
             </a>
           </li>
           <hr>
           <li class="nav-item purchase-button">
-            <a class="nav-link" href="logout.php">Logout</a>
+            <a class="nav-link" href="logout.php" style="background-image: -webkit-linear-gradient(left, #4d9be6 1%, #4d65b4 100%); background-color: #8fd3ff !important;">KELUAR</a>
           </li>
         </ul>
       </nav>

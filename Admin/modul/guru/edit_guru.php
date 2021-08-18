@@ -13,7 +13,7 @@
                   <h4 class="card-title">Form Edit Guru</h4>
                     <form class="forms-sample" action="" method="post" enctype="multipart/form-data">
                       <div class="form-group">
-                        <label>Nip</label>
+                        <label>NIP</label>
                         <input type="hidden" name="ID" value="<?=$d['id_guru'] ?>">
                         <input name="nip" type="text" class="form-control" value="<?=$d['nik'] ?>" readonly>
                       </div>
@@ -50,8 +50,8 @@
                               Anda yakin akan mengedit guru?
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button name="updateGuru" type="submit" class="btn btn-success">Edit</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                              <button name="updateGuru" type="submit" class="btn btn-success">Simpan</button>
                             </div>
                           </div>
                         </div>
@@ -76,13 +76,13 @@
                               Anda mereset password dari akun ini?
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                               <button name="resetPassword" type="submit" class="btn btn-danger mr-2">Reset Password</button>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <a href="?page=guru" class="btn btn-light">Cancel</a>
+                      <a href="?page=guru" class="btn btn-light">Batal</a>
                     </form>
                     <?php 
                       if (isset($_POST['updateGuru'])) {
@@ -99,7 +99,7 @@
                             setTimeout(function () {
                               swal({
                                 title             : 'Sukses',
-                                text              : 'Data Berhasil diperbarui',
+                                text              : 'AKUN BERHASIL DIUBAH',
                                 type              : 'success',
                                 timer             : 3000,
                                 showConfirmButton : true
@@ -121,7 +121,7 @@
                             setTimeout(function () {
                               swal({
                                 title             : 'Sukses',
-                                text              : 'Password Berhasil direset',
+                                text              : 'PASSWORD BERHASIL DIUBAH',
                                 type              : 'success',
                                 timer             : 3000,
                                 showConfirmButton : true

@@ -44,25 +44,25 @@
                   <input type="hidden" name="id_semester" id="id_semester">
                 </div>
                 <div class="form-group">
-                  <label>Judul Tugas *</label>
-                  <input type="text" name="judul" class="form-control" placeholder="Judul Tugas ..">
+                  <label>Judul Tugas</label>
+                  <input type="text" name="judul" class="form-control" placeholder="Judul Tugas">
                 </div>
                 <div class="form-group">
-                  <label>Tanggal Tugas *</label>
+                  <label>Tanggal Tugas</label>
                   <input type="date" name="tgl" class="form-control" value="<?php echo date('Y-m-d') ?>">
                 </div>
                 <div class="form-group">
-                  <label>Waktu *</label>
-                  <p class="text-danger">Berapa waktu untuk pengerjaan tugas ?? Ex (<b>3 Hari</b>)</p>
+                  <label>Waktu</label>
+                  <p class="text-danger">Jangka waktu untuk pengerjaan tugas. Contoh: Masukkan angka (<b>3</b>) untuk <b>3 Hari</b></p>
                   <input type="number" name="waktu" class="form-control"placeholder='(1) Hari'maxlength="2" required style="width: 300px;" min="0">
                 </div>
                 <div class="form-group">
-                  <label>Jumlah Anggota *</label>
-                  <p class="text-success">Isi jumlah anggota jika tugas ini berkelompok,Kosongkan jika Tidak</p>
+                  <label>Jumlah Anggota</label>
+                  <p class="text-success">Isi jumlah anggota jika tugas ini berkelompok, kosongkan jika tidak.</p>
                   <input type="number" name="jumlahanggota" class="form-control" maxlength="2" style="width: 300px;background: #212121;color: #fff;font-weight: bold;" min="0">
                 </div>
                 <div class="form-group">
-                  <label>Intruksi Tugas/ Isi*</label>
+                  <label>Intruksi Tugas</label>
                   <textarea name="isi_tugas" class="form-control" id="ckeditor" cols="30" rows="10"></textarea>
                 </div>
                 <hr>
@@ -79,10 +79,10 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        Apakah anda yakin akan menambahkan data tugas?
+                        Apakah anda yakin akan menambahkan tugas?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" name="tugasSave" class="btn btn-info">Simpan</button>
                       </div>
                     </div>

@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-  <h4> <b>Tugas Siswa</b> <small class="text-muted">/</small></h4>
+  <h4> <b>Tugas</b> <small class="text-muted">/ Data Tugas</small></h4>
   <hr>
   <div class="row">
     <div class="col-md-12">

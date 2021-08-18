@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-  <h4>Mata Pelajaran <small class="text-muted">/ Tambah</small></h4>
+  <h4>Jadwal Mapel <small class="text-muted">/ Tambah</small></h4>
   <hr>
   <div class="row">
     <div class="col-md-6 col-xs-12 d-flex align-items-stretch grid-margin">
@@ -7,7 +7,7 @@
         <div class="col-12 col-xs-12">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Mata Pelajaran</h4>
+              <h4 class="card-title">Jadwal Mata Pelajaran</h4>
               <p class="card-description"></p>
               <hr>
               <form class="forms-sample" action="?page=proses" method="post">
@@ -72,7 +72,7 @@
                         Apakah anda yakin akan menambah data ini?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" name="mapelSave" class="btn btn-primary">Simpan</button>
                       </div>
                     </div>

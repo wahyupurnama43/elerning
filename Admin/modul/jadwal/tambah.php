@@ -73,7 +73,7 @@
                         Apakah anda yakin akan menambahkan data jadwal ini?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" name="jadwalSave" class="btn btn-info">Simpan</button>
                       </div>
                     </div>
@@ -99,7 +99,7 @@
                       setTimeout(function () {
                         swal({
                           title             : 'Sukses',
-                          text              : 'Jadwal berhasil ditambah',
+                          text              : 'JADWAL BERHASIL DISIMPAN',
                           type              : 'success',
                           timer             : 3000,
                           showConfirmButton : true

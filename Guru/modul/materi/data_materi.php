@@ -6,7 +6,7 @@
       <div class="row purchace-popup">
         <div class="col-md-12 col-xs-12">
           <span class="d-flex alifn-items-center">
-          <p>Saat ini Anda belum mempunyai Materi Apapun. Tambah Untuk Membuat Materi</p>
+          <p>Saat ini anda belum menambahkan materi apapun, klik tambah untuk menambahkan materi.</p>
           <a data-toggle="modal" data-target="#addMateri" href="?page=materi&act=add" class="btn ml-auto purchase-button"> <i class="fa fa-plus"></i> Tambah Materi</a>
           <i class="mdi mdi-close popup-dismiss"></i>
           </span>
@@ -18,7 +18,7 @@
             <span class="d-flex alifn-items-center">
             <!-- <h4><b>Home</b> > Perangkat Pembelajaran</h4> -->
 
-            <a data-toggle="modal" data-target="#addMateri" href="?page=materi&act=add" class="btn btn-dark"> <i class="fa fa-plus"></i> Add Materi</a>
+            <a data-toggle="modal" data-target="#addMateri" href="?page=materi&act=add" class="btn btn-dark"> <i class="fa fa-plus"></i> Tambah Materi</a>
             </span>
           </div>
         </div>
@@ -98,7 +98,7 @@
                                 <td class="text-center"><?=$no++; ?>.</td>
                                 <td class="text-center"><b class="text-info"><?=$row['judul_materi']; ?></b></td>
                                 <td class="text-center">
-                                  <a data-toggle="modal" data-target="#<?=$row['id_materi']; ?>" class="btn btn-light"> <img class="menu-icon" src="../vendor/images/menu_icons/04.png" alt="menu icon"> View Materi</a>
+                                  <a data-toggle="modal" data-target="#<?=$row['id_materi']; ?>" class="btn btn-light"> <img class="menu-icon" src="../vendor/images/menu_icons/04.png" alt="menu icon"> Tampilkan Materi</a>
                                   <!-- Modal Detail-->
                                   <div class="modal fade bs-example-modal-lg" id="<?=$row['id_materi']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog modal-lg" role="document">
@@ -144,7 +144,7 @@
                                           ?>
                                         </div>
                                         <div class="modal-footer" style="float: left;">
-                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                                         </div>
                                       </div>
                                     </div>
@@ -237,8 +237,8 @@
 
            <a href="?page=materi&act=add&TYPE=Manual" class="btn btn-dark btn-lg">
             <!-- <img src="../vendor/images/ck.png" width="300"> -->
-            <i class="fa fa-file-text-o"></i>BY CKEDITOR</a>
-         <a href="?page=materi&act=add&TYPE=Upload" class="btn btn-success btn-lg"><i class="fa fa-upload"></i>UPLOAD FILE</a>
+            <i class="fa fa-file-text-o"></i>MANUAL</a>
+         <a href="?page=materi&act=add&TYPE=Upload" class="btn btn-success btn-lg"><i class="fa fa-upload"></i>UPLOAD MATERI</a>
         </center>
       </div>
       <div class="modal-footer">

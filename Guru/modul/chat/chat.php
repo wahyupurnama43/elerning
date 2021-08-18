@@ -15,7 +15,7 @@
 
 ?>
 <div class="content-wrapper">
-  <h3><b>Dashboard</b><small class="text-muted">/Guru</small></h3>
+  <h3><b>Chat Box</b><small class="text-muted"></h3>
   <hr>
   <div class="row">
     <!-- style="overflow:scroll;height:600px;border-radius:10px;background-color:#fff;border:7px solid;" -->
@@ -59,8 +59,8 @@
               <script type='text/javascript'>
                 setTimeout(function () {
                   swal({
-                    title             : 'Sukses',
-                    text              : 'Diskusi Berhasil Dibuat',
+                    title             : 'SUKSES',
+                    text              : 'CHAT BERHASIL DIBUAT',
                     type              : 'success',
                     timer             : 3000,
                     showConfirmButton : true

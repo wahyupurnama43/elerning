@@ -81,11 +81,11 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div class="modal-body">
-                        Anda yakin akan mengedit data jadwal ini?
+                      <div class="modal-body" style="text-align: center;">
+                        Anda yakin akan mengedit jadwal ini?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button> 
                         <button type="submit" name="jadwalEdit" class="btn btn-info">Edit</button>
                       </div>
                     </div>
@@ -110,7 +110,7 @@
                       setTimeout(function () {
                         swal({
                           title             : 'Sukses',
-                          text              : 'Jadwal berhasil diedit',
+                          text              : 'JADWAL BERHASIL DIUBAH',
                           type              : 'success',
                           timer             : 3000,
                           showConfirmButton : true

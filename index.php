@@ -51,14 +51,14 @@
 					<span class="login100-form-title p-b-49">
 						E-LEARNING
 					</span>
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username belum diisi">
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username/NIS belum diisi">
 						<span for="nis" class="label-input100">Username/NIS</span>
-						<input class="input100" type="text" name="username" placeholder="Type your username">
+						<input class="input100" type="text" name="username" placeholder="Masukkan Username/NIS">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-23" data-validate="Password belum diisi">
 						<span for="Password" class="label-input100">Password</span>
-						<input class="input100" type="password" name="password" placeholder="Type your password">
+						<input class="input100" type="password" name="password" placeholder="Masukkan Password">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
@@ -101,8 +101,8 @@
               <script type='text/javascript'>
                 setTimeout(function () {
                   swal({
-                    title             : 'Sukses',
-                    text              : 'Login Berhasil..',
+                    title             : 'SUKSES',
+                    text              : 'LOGIN BERHASIL',
                     type              : 'success',
                     timer             : 3000,
                     showConfirmButton : true
@@ -136,8 +136,8 @@
                 <script type='text/javascript'>
                 setTimeout(function () {
                 swal({
-                title: 'Sukses',
-                text:  'Login Berhasil..',
+                title: 'SUKSES',
+                text:  'LOGIN BERHASIL',
                 type: 'success',
                 timer: 3000,
                 showConfirmButton: true
@@ -162,8 +162,8 @@
                   <script type='text/javascript'>
                   setTimeout(function () {
                   swal({
-                  title: 'Admin',
-                  text:  'Login Berhasil..',
+                  title: 'ADMIN',
+                  text:  'LOGIN BERHASIL',
                   type: 'success',
                   timer: 3000,
                   showConfirmButton: true
@@ -179,8 +179,8 @@
               <script type='text/javascript'>
               setTimeout(function () {
               swal({
-              title: 'Gagal',
-               text:  'User ID / Password Salah Atau Belum Dikonfirmasi Oleh Admin !',
+              title: 'GAGAL',
+               text:  'USERNAME/NIS ATAU PASSWORD SALAH',
               type: 'error',
               timer: 3000,
               showConfirmButton: true

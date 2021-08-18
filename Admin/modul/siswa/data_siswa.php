@@ -12,14 +12,13 @@
           <h4 class="card-title">Data Siswa</h4>
             <div class="table-responsive">
               <table class="table table-condensed table-striped table-hover" id="data">
-                <thead>
+                <thead class="bg-dark text-white">
                   <tr>
                     <th class="text-center">No.</th> 
-                    <th class="text-center">Nis</th> 
+                    <th class="text-center">NIS</th> 
                     <th class="text-center">Nama Siswa</th> 
                     <th class="text-center">Kelas</th>
                     <th class="text-center">Foto</th>
-                    <th class="text-center">Status</th>
                     <th class="text-center">Opsi</th>                     
                   </tr>                        
                 </thead>  
@@ -37,15 +36,6 @@
                         <td class="text-center"><?=$d['nama_siswa']?> </td>
                         <td class="text-center"><?=$d['kelas']?></td>
                         <td class="text-center"><img src="../vendor/images/img_Siswa/<?=$d['foto']?>" class="img-thumbnail" style="width:50px;height:50px;"> </td>
-                        <td class="text-center">
-                          <?php
-                            if ($d['aktif']=='Y') {
-                              echo "<a href=''><b class='badge badge-success'>Aktif</b></a>";
-                            }else{
-                              echo "<a href=''><b class='badge badge-danger'>Bloked</b></a>";
-                            }
-                          ?> 
-                        </td>
                         <td class="text-center">
                           <a href="?page=siswa&act=edit&id=<?=$d['id_siswa']?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
 

@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-  <h4> <b>User</b> <small class="text-muted">/ Jadwal</small></h4>
+  <h4> <b>Master</b> <small class="text-muted">/ Jadwal</small></h4>
   <hr>
   <div class="row">
     <div class="col-md-12">
@@ -12,7 +12,7 @@
           <h4 class="card-title">Data Jadwal</h4>
           <div class="table-responsive">
             <table class="table table-condensed table-striped table-hover" id="data">
-              <thead>
+              <thead class="bg-dark text-white">
                 <tr>
                   <th class="text-center">No.</th> 
                   <th class="text-center">Mata Pelajaran</th> 
@@ -41,7 +41,7 @@
                     <td class="text-center"><?= $d['jam_mulai'] . ' - ' . $d['jam_selesai']; ?></td>
                     <td class="text-center"><?= $d['nama_guru']; ?></td>
                     <td class="text-center">
-                      <a href="?page=jadwal&act=edit&id=<?= $d['id_jadwal']; ?>" class="btn btn-success text-white"><i class="fa fa-pencil"></i> Edit</a>
+                      <a href="?page=jadwal&act=edit&id=<?= $d['id_jadwal']; ?>" class="btn btn-dark text-warning"><i class="fa fa-pencil"></i> Edit</a>
                       <!-- Button trigger modal -->
                       <button type="button" class="btn btn-danger text-white" data-toggle="modal" data-target="#exampleModal<?= $d['id_mapel']; ?>"><i class="fa fa-trash"></i> Hapus</button>
 
@@ -59,7 +59,7 @@
                               Apakah anda yakin akan menghapus data jadwal ini?
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                               <a href="?page=jadwal&act=delete&id=<?= $d['id_jadwal']; ?>" class="btn btn-danger text-white"><i class="fa fa-trash"></i> Hapus</a>
                             </div>
                           </div>

@@ -50,7 +50,7 @@
                   <label for="ckeditor">Materi</label>
                   <textarea name="materi" id="ckeditor"><?=$d['materi']; ?></textarea>
                 </div>
-                <button type="submit" name="materiUpdate" class="btn btn-info mr-2">Update</button>
+                <button type="submit" name="materiUpdate" class="btn btn-info mr-2">Edit</button>
                 <a href="?page=materi" class="btn btn-danger">Batal</a>
               </form>
             </div>

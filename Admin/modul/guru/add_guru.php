@@ -11,8 +11,8 @@
               <p class="card-description"></p>
               <form class="forms-sample" action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                  <label>Nip</label>
-                  <input name="nip" type="text" class="form-control" placeholder="Nip/Nuptk" required>
+                  <label>NIP</label>
+                  <input name="nip" type="text" class="form-control" placeholder="Nomor Induk Pegawai" required>
                 </div>
                 <div class="form-group">
                   <label>Nama Lengkap & Gelar</label>
@@ -43,13 +43,13 @@
                         Anda yakin akan menambah guru?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button> 
                         <button name="saveGuru" type="submit" class="btn btn-success mr-2">Tambah</button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <a href="?page=guru" class="btn btn-light">Cancel</a>
+                <a href="?page=guru" class="btn btn-light">Batal</a>
               </form>
               <?php 
                 if (isset($_POST['saveGuru'])) {
@@ -77,7 +77,7 @@
                         setTimeout(function () {
                           swal({
                             title             : 'Sukses',
-                            text              : 'Data berhasil ditambah',
+                            text              : 'AKUN BERHASIL DISIMPAN',
                             type              : 'success',
                             timer             : 3000,
                             showConfirmButton : true

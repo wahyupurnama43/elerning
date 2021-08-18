@@ -25,7 +25,18 @@
   //Jika tidak ada ujian aktif tampilkan pesan
   if($tujian < 1 || (strtotime('now') <= strtotime($rujian['tanggal'] . ' ' . $rujian['jam_mulai'] . ':00'))){
     echo '
-      <div class="alert alert-info">Belum ada ujian Pada Tanggal Sekarang Untuk Kelas Kamu. Jika ada kesalahan hubungi Operator! perbaiki tanggal ujian atau kelas ujian</div>';
+      <div class="table-responsive">
+        <table class="table table-striped" id="data">
+          <thead>
+          <tr>
+            <th>No</th>
+            <th>Judul</th>
+            <th>Pelajaran</th>
+            <th>Jenis Ujian</th>
+            <th>Aksi</th>
+          </tr>
+          </thead>
+          <tbody>';
   } else {
     echo '
       <div class="table-responsive">
