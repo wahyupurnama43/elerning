@@ -11,8 +11,12 @@
               <p class="card-description">
                 <!-- Basic form layout -->
               </p>
-              <form class="forms-sample" action="?page=proses" method="post">
-                <input type="hidden" name="id" value="<?=$_GET['ID']; ?>">
+              <form class="forms-sample" action="?page=proses" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?= $_GET['ID']; ?>">
+                <div class="form-group">
+                  <label for="ckeditor">Input Gambar <span class="text-danger">(Gambar Ukuran Rasio 1:1)</span></label>
+                  <input type="file" name="gambar_soal" class="form-control">
+                </div>
                 <div class="form-group">
                   <label for="ckeditor">Soal</label>
                   <textarea name="soal" id="ckeditor"></textarea>
@@ -41,7 +45,7 @@
                   </div>
                 </div>
                 <a href="?page=ujian&act=soalessay&id=<?= $_GET['ID']; ?>" class="btn btn-danger">Batal</a>
-<?php include 'moudul/ujian/modalinput.php'; ?>
+                <?php include 'moudul/ujian/modalinput.php'; ?>
 
 
 

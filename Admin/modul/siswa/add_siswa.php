@@ -36,10 +36,10 @@
                   <select class="form-control" required id="kelas" name="kelas">
                     <option value=''>-- Pilih --</option>
                     <?php
-                      $sqlKelas = mysqli_query($con, "SELECT * FROM tb_master_kelas ORDER BY id_kelas DESC");
-                      while($kelas=mysqli_fetch_array($sqlKelas)){
-                        echo "<option value='$kelas[id_kelas]'>$kelas[kelas]</option>";
-                      }
+                    $sqlKelas = mysqli_query($con, "SELECT * FROM tb_master_kelas ORDER BY id_kelas DESC");
+                    while ($kelas = mysqli_fetch_array($sqlKelas)) {
+                      echo "<option value='$kelas[id_kelas]'>$kelas[kelas]</option>";
+                    }
                     ?>
                   </select>
                 </div>
@@ -50,36 +50,36 @@
                 <button name="saveGuru" type="submit" class="btn btn-success mr-2">Simpan</button>
                 <a href="?page=siswa" class="btn btn-light">Batal</a>
               </form>
-              <?php 
-                if (isset($_POST['saveGuru'])) {
-                  $pass         = sha1($_POST['nis']);
-                  $sumber       = @$_FILES['foto']['tmp_name'];
-                  $target       = '../vendor/images/img_Siswa/';
-                  $nama_gambar  = @$_FILES['foto']['name'];
-                  $pindah       = move_uploaded_file($sumber, $target.$nama_gambar);
-                  $date         = date('Y-m-d');
-                  if ($pindah) {
-                    $save = mysqli_query($con,"INSERT INTO tb_siswa VALUES(NULL,'$_POST[nis]','$_POST[nama]','$_POST[jk]','$pass','off','Y','0','$nama_gambar','$_POST[kelas]','Yes')");
-                    if ($save) {
-                      echo " 
+              <?php
+              if (isset($_POST['saveGuru'])) {
+                $pass         = sha1($_POST['nis']);
+                $sumber       = @$_FILES['foto']['tmp_name'];
+                $target       = '../vendor/images/img_Siswa/';
+                $nama_gambar  = @$_FILES['foto']['name'];
+                $pindah       = move_uploaded_file($sumber, $target . $nama_gambar);
+                $date         = date('Y-m-d');
+                if ($pindah) {
+                  $save = mysqli_query($con, "INSERT INTO tb_siswa VALUES(NULL,'$_POST[nis]','$_POST[nama]','$_POST[jk]','$pass','off','Y','0','$nama_gambar','$_POST[kelas]','Yes')");
+                  if ($save) {
+                    echo " 
                         <script type='text/javascript'>
                           setTimeout(function () {
                             swal({
                               title             : 'Sukses',
                               text              : 'DATA BERHASIL DISIMPAN',
                               type              : 'success',
-                              timer             : 3000,
-                              showConfirmButton : true
+                              timer             : 1000,
+                              showConfirmButton: false
                             });     
                           },10);  
                           window.setTimeout(function(){ 
-                            window.location='?page=siswa&alert=Data Berhasil disimpan!';
-                          } ,3000);   
+                            window.location='?page=siswa';
+                          } ,1000);   
                         </script>";
-                    }
                   }
                 }
-              ?> 
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
     if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
     return true;
   }
-  
+
   function goBack() {
     window.history.back();
   }

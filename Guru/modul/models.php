@@ -1,17 +1,18 @@
-<?php 
-  include '../config/db.php';
-  //fungsi untuk mengkonversi size file
-  function formatBytes($bytes, $precision = 2) { 
-    $units  = array('B', 'KB', 'MB', 'GB', 'TB'); 
-    $bytes  = max($bytes, 0); 
-    $pow    = floor(($bytes ? log($bytes) : 0) / log(1024)); 
-    $pow    = min($pow, count($units) - 1); 
-    $bytes /= pow(1024, $pow); 
-    return round($bytes, $precision) . ' ' . $units[$pow]; 
-  } 
+<?php
+include '../config/db.php';
+//fungsi untuk mengkonversi size file
+function formatBytes($bytes, $precision = 2)
+{
+  $units  = array('B', 'KB', 'MB', 'GB', 'TB');
+  $bytes  = max($bytes, 0);
+  $pow    = floor(($bytes ? log($bytes) : 0) / log(1024));
+  $pow    = min($pow, count($units) - 1);
+  $bytes /= pow(1024, $pow);
+  return round($bytes, $precision) . ' ' . $units[$pow];
+}
 
-  if (isset($_POST['mapelSave'])) {
-    $sql= mysqli_query($con,"INSERT INTO tb_roleguru VALUES (
+if (isset($_POST['mapelSave'])) {
+  $sql = mysqli_query($con, "INSERT INTO tb_roleguru VALUES (
       NULL,
       '$_POST[id_guru]',
       '$_POST[kelas]',
@@ -20,29 +21,29 @@
       '$_POST[jadwal]'
       ) 
     ") or die(mysqli_error($con));
-    if ($sql) {
-      mysqli_query($con, "UPDATE jadwal
+  if ($sql) {
+    mysqli_query($con, "UPDATE jadwal
         SET status = 'dipilih'
         WHERE id_jadwal = '$_POST[jadwal]'
       ");
-      echo "
+    echo "
         <script type='text/javascript'>
           setTimeout(function () {
             swal({
               title             : 'Sukses',
               text              : 'Data berhasil disimpan',
               type              : 'success',
-              timer             : 3000,
-              showConfirmButton : true
+              timer             : 1000,
+              showConfirmButton :false
             });     
           },10);  
           window.setTimeout(function(){ 
             window.location.replace('?page=mapel&alert=Data berhasil disimpan');
-          } ,3000);   
+          } ,1000);   
         </script>";
-    }
-  } elseif (isset($_POST['mapelUpdate'])) {
-    $sql= mysqli_query($con,"UPDATE tb_roleguru 
+  }
+} elseif (isset($_POST['mapelUpdate'])) {
+  $sql = mysqli_query($con, "UPDATE tb_roleguru 
       SET id_kelas    = '$_POST[kelas]',
           id_mapel    = '$_POST[mapel]',
           id_semester = '$_POST[semester]' 
@@ -50,84 +51,86 @@
           jam         = '$_POST[jam]' 
       WHERE id_roleguru='$_POST[ID]' 
     ") or die(mysqli_error($con));
-    if ($sql) {
-      echo "
+  if ($sql) {
+    echo "
         <script type='text/javascript'>
           setTimeout(function () {
             swal({
               title : 'Sukses',
               text  :  'Data Telah Diubah !',
               type  : 'success',
-              timer : 3000
+              timer : 1000,
+              showConfirmButton: false
             });     
           },10);  
           window.setTimeout(function(){ 
             window.location.replace('?page=mapel');
-          } ,3000);   
+          } ,1000);   
         </script>";
-    }
-  } elseif (isset($_POST['perangkatUpload'])) {
-    $allowed_ext  = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip', 'jpg', 'jpeg', 'png');
-    $file_name    = $_FILES['file']['name'];
-    @$file_ext    = strtolower(end(explode('.', $file_name)));
-    $file_size    = $_FILES['file']['size'];
-    $file_tmp     = $_FILES['file']['tmp_name'];
-    $judul        = $_POST['judul'];
-    $nama         = time();
-    $date         = date('Y-m-d'); 
-    if(in_array($file_ext, $allowed_ext) === true){
-      if($file_size < 3044070){
-        $lokasi = '../vendor/file/'.'PERANGKAT_'.$nama.'.'.$file_ext;
-        move_uploaded_file($file_tmp, $lokasi);
-        $in = mysqli_query($con,"INSERT INTO tb_perangkat VALUES(NULL,'$_POST[judul]','$nama','$file_ext', '$file_size', '$lokasi','$_POST[isi_perangkat]','$_POST[id_jenis]','$date','1','$_POST[id_roleguru]')");
-        if($in){
-          echo "
+  }
+} elseif (isset($_POST['perangkatUpload'])) {
+  $allowed_ext  = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip', 'jpg', 'jpeg', 'png');
+  $file_name    = $_FILES['file']['name'];
+  @$file_ext    = strtolower(end(explode('.', $file_name)));
+  $file_size    = $_FILES['file']['size'];
+  $file_tmp     = $_FILES['file']['tmp_name'];
+  $judul        = $_POST['judul'];
+  $nama         = time();
+  $date         = date('Y-m-d');
+  if (in_array($file_ext, $allowed_ext) === true) {
+    if ($file_size < 3044070) {
+      $lokasi = '../vendor/file/' . 'PERANGKAT_' . $nama . '.' . $file_ext;
+      move_uploaded_file($file_tmp, $lokasi);
+      $in = mysqli_query($con, "INSERT INTO tb_perangkat VALUES(NULL,'$_POST[judul]','$nama','$file_ext', '$file_size', '$lokasi','$_POST[isi_perangkat]','$_POST[id_jenis]','$date','1','$_POST[id_roleguru]')");
+      if ($in) {
+        echo "
             <script type='text/javascript'>
               setTimeout(function () {
                 swal({
                   title : 'Sukses',
                   text  :  'Data Tersimpan !',
                   type  : 'success',
-                  timer : 3000
+                  timer : 1000,
+                  showConfirmButton: false
                 });     
               },10);  
               window.setTimeout(function(){ 
                 window.location.replace('?page=perangkat');
-              } ,3000);   
+              } ,1000);   
             </script>";
-        }else{
-          echo '<div class="error">ERROR: Gagal upload file!</div>';
-        }
       } else {
-        echo '<div class="error">ERROR: Besar ukuran file (file size) maksimal 1 Mb!</div>';
+        echo '<div class="error">ERROR: Gagal upload file!</div>';
       }
     } else {
-      echo '<div class="error">ERROR: Ekstensi file tidak di izinkan!</div>';
+      echo '<div class="error">ERROR: Besar ukuran file (file size) maksimal 1 Mb!</div>';
     }
-  } elseif (isset($_POST['perangkatSave'])) {
-    $nama = time();
-    $date = date('Y-m-d'); 
-    $sql  = mysqli_query($con,"INSERT INTO tb_perangkat VALUES (NULL,'$_POST[judul]','$nama','text','File','--','$_POST[isi_perangkat]','$_POST[id_jenis]','$date','1','$_POST[id_roleguru]') ") or die(mysqli_error($con));
-      if ($sql) {
-        echo "
+  } else {
+    echo '<div class="error">ERROR: Ekstensi file tidak di izinkan!</div>';
+  }
+} elseif (isset($_POST['perangkatSave'])) {
+  $nama = time();
+  $date = date('Y-m-d');
+  $sql  = mysqli_query($con, "INSERT INTO tb_perangkat VALUES (NULL,'$_POST[judul]','$nama','text','File','--','$_POST[isi_perangkat]','$_POST[id_jenis]','$date','1','$_POST[id_roleguru]') ") or die(mysqli_error($con));
+  if ($sql) {
+    echo "
           <script type='text/javascript'>
             setTimeout(function () {
               swal({
                 title: 'Sukses',
                 text:  'Data Tersimpan !',
                 type: 'success',
-                timer: 3000,
-                showConfirmButton: true
+                timer: 1000,
+                showConfirmButton: false
               });     
             },10);  
             window.setTimeout(function(){ 
               window.location.replace('?page=perangkat');
-            } ,3000);   
+            } ,1000);   
           </script>";
-      }
-  } elseif (isset($_POST['perangkatUpdate'])) {
-    $date = date('Y-m-d'); 
-    $sql  = mysqli_query($con, "UPDATE tb_perangkat 
+  }
+} elseif (isset($_POST['perangkatUpdate'])) {
+  $date = date('Y-m-d');
+  $sql  = mysqli_query($con, "UPDATE tb_perangkat 
       SET judul             = '$_POST[judul]', 
           isi_perangkat     = '$_POST[isi_perangkat]',
           id_jenisperangkat = '$_POST[id_jenis]',
@@ -135,28 +138,28 @@
           id_mapel          = '$_POST[id_mapel]',
           id_semester       = '$_POST[id_semester]',
       WHERE id_perangkat='$_POST[ID]' ") or die(mysqli_error($con));
-    if ($sql) {
-      echo "
+  if ($sql) {
+    echo "
         <script type='text/javascript'>
           setTimeout(function () {
             swal({
               title: 'Sukses',
               text:  'Data Telah Diubah !',
               type: 'success',
-              timer: 3000,
-              showConfirmButton: true
+              timer: 1000,
+              showConfirmButton: false
             });     
           },10);  
           window.setTimeout(function(){ 
             window.location.replace('?page=perangkat');
-          } ,3000);   
+          } ,1000);   
         </script>";
-    }
+  }
   // materi tambah
-  } elseif (isset($_POST['materiSave'])) {
-    $date = date('Y-m-d'); 
-    $nama = time();
-    $sql  = mysqli_query($con,"INSERT INTO tb_materi 
+} elseif (isset($_POST['materiSave'])) {
+  $date = date('Y-m-d');
+  $nama = time();
+  $sql  = mysqli_query($con, "INSERT INTO tb_materi 
       VALUES (
         NULL,
         '$_POST[judul]',
@@ -170,37 +173,37 @@
         'Y'
       ) 
     ") or die(mysqli_error($con));
-    if ($sql) {
-      echo "
+  if ($sql) {
+    echo "
         <script type='text/javascript'>
           setTimeout(function () {
             swal({
               title: 'Sukses',
               text:  'Data Tersimpan !',
               type: 'success',
-              timer: 3000,
-              showConfirmButton: true
+              timer: 1000,
+              showConfirmButton: false
             });     
           },10);  
           window.setTimeout(function(){ 
             window.location.replace('?page=materi&alert=Data materi berhasil ditambahkan');
-          } ,3000);   
+          } ,1000);   
         </script>";
-    }
-  } elseif (isset($_POST['materiFile'])) {
-    $allowed_ext  = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip');
-    $file_name    = $_FILES['file']['name'];
-    @$file_ext    = strtolower(end(explode('.', $file_name)));
-    $file_size    = $_FILES['file']['size'];
-    $file_tmp     = $_FILES['file']['tmp_name'];
-    $judul        = $_POST['judul'];
-    $nama         = time();
-    $date         = date('Y-m-d'); 
-    if(in_array($file_ext, $allowed_ext) === true){
-      if($file_size < 3044070){
-        $lokasi = '../vendor/file/'.'PERANGKAT_'.$nama.'.'.$file_ext;
-          move_uploaded_file($file_tmp, $lokasi);
-          $in = mysqli_query($con,"INSERT INTO tb_materi 
+  }
+} elseif (isset($_POST['materiFile'])) {
+  $allowed_ext  = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip');
+  $file_name    = $_FILES['file']['name'];
+  @$file_ext    = strtolower(end(explode('.', $file_name)));
+  $file_size    = $_FILES['file']['size'];
+  $file_tmp     = $_FILES['file']['tmp_name'];
+  $judul        = $_POST['judul'];
+  $nama         = time();
+  $date         = date('Y-m-d');
+  if (in_array($file_ext, $allowed_ext) === true) {
+    if ($file_size < 3044070) {
+      $lokasi = '../vendor/file/' . 'PERANGKAT_' . $nama . '.' . $file_ext;
+      move_uploaded_file($file_tmp, $lokasi);
+      $in = mysqli_query($con, "INSERT INTO tb_materi 
             VALUES (
               NULL,
               '$_POST[judul]',
@@ -214,112 +217,222 @@
               'Y'
             )
           ");
-          if($in){
-            echo "
+      if ($in) {
+        echo "
               <script type='text/javascript'>
                 setTimeout(function () {
                   swal({
                     title: 'Sukses',
                     text:  'Data Tersimpan !',
                     type: 'success',
-                    timer: 3000,
-                    showConfirmButton: true
+                    timer: 1000,
+                    showConfirmButton: false
                   });     
                 },10);  
                 window.setTimeout(function(){ 
                   window.location.replace('?page=materi&alert=Data materi berhasil ditambahkan');
-                } ,3000);   
+                } ,1000);   
               </script>";
-          } else {
-            echo '<div class="error">ERROR: Gagal upload file!</div>';
-          }
-        } else {
-        echo '<div class="error">ERROR: Besar ukuran file (file size) maksimal 1 Mb!</div>';
+      } else {
+        echo "
+          <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'ERROR: Gagal upload file!',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=materi&act=add&TYPE=Upload');
+          } ,1000);   
+        </script>
+      ";
+      }
+    } else {
+      echo "
+        <script type='text/javascript'>
+        setTimeout(function () {
+          swal({
+            title: 'Danger',
+            text:  'ERROR: Besar ukuran file (file size) maksimal 1 Mb!',
+            type: 'error',
+            timer: 1000,
+            showConfirmButton: false
+          });     
+        },10);  
+        window.setTimeout(function(){ 
+          window.location.replace('?page=materi&act=add&TYPE=Upload');
+        } ,1000);   
+      </script>
+    ";
+    }
+  } else {
+    echo "
+      <script type='text/javascript'>
+      setTimeout(function () {
+        swal({
+          title: 'Danger',
+          text:  'File Tidak Di Ijinkan',
+          type: 'error',
+          timer: 1000,
+          showConfirmButton: false
+        });     
+      },10);  
+      window.setTimeout(function(){ 
+        window.location.replace('?page=materi&act=add&TYPE=Upload');
+      } ,1000);   
+    </script>
+  ";
+  }
+} elseif (isset($_POST['materiUpdate'])) {
+  if (!empty($_FILES['file'])) {
+    $allowed_ext  = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip');
+    $file_name    = $_FILES['file']['name'];
+    @$file_ext    = strtolower(end(explode('.', $file_name)));
+    $file_size    = $_FILES['file']['size'];
+    $file_tmp     = $_FILES['file']['tmp_name'];
+    $judul        = $_POST['judul'];
+    $nama         = time();
+    $date         = date('Y-m-d');
+    if (in_array($file_ext, $allowed_ext) === true) {
+      if ($file_size < 3044070) {
+        $lokasi = '../vendor/file/' . 'PERANGKAT_' . $nama . '.' . $file_ext;
+        $cek_file = move_uploaded_file($file_tmp, $lokasi);
+        $tambahan = "file='$lokasi'";
+        if ($cek_file == false) {
+          echo "
+            <script type='text/javascript'>
+            setTimeout(function () {
+              swal({
+                title: 'Danger',
+                text:  'ERROR: Gagal upload file!',
+                type: 'error',
+                timer: 1000,
+                showConfirmButton: false
+              });     
+            },10);  
+            window.setTimeout(function(){ 
+              window.location.replace('?page=materi&act=add&TYPE=Upload');
+            } ,1000);   
+          </script>";
         }
       } else {
-        echo '<div class="error">ERROR: Ekstensi file tidak di izinkan!</div>';
-      }
-    } elseif (isset($_POST['materiUpdate'])) {
-      $sql  = mysqli_query($con,"UPDATE tb_materi SET judul_materi='$_POST[judul]',materi='$_POST[materi]',id_roleguru='$_POST[id_roleguru]' WHERE id_materi='$_POST[ID]' ") or die(mysqli_error($con));
-      if ($sql) {
         echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'ERROR: Besar ukuran file (file size) maksimal 1 Mb!',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=materi&act=add&TYPE=Upload');
+          } ,1000);   
+        </script>";
+      }
+    } else {
+      echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'File Tidak Di Ijinkan',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=materi&act=add&TYPE=Upload');
+          } ,1000);   
+        </script>";
+    }
+  } else if (!empty($_POST['materi'])) {
+    $tambahan = "materi='$_POST[materi]'";
+  }
+  $sql  = mysqli_query($con, "UPDATE tb_materi SET judul_materi='$_POST[judul]',$tambahan,id_roleguru='$_POST[id_roleguru]' WHERE id_materi='$_POST[ID]' ") or die(mysqli_error($con));
+  if ($sql) {
+    echo "
           <script type='text/javascript'>
             setTimeout(function () {
               swal({
                 title: 'Sukses',
                 text:  'Data Telah Diubah!',
                 type: 'success',
-                timer: 3000,
-                showConfirmButton: true
+                timer: 1000,
+                showConfirmButton: false
               });     
             },10);  
             window.setTimeout(function(){ 
               window.location.replace('?page=materi');
-            } ,3000);   
+            } ,1000);   
           </script>";
-      }
-    } elseif (isset($_POST['porifilUpdate'])) {
-      $password = sha1($_POST['password']);
-      $gambar   = @$_FILES['foto']['name'];
-      if (!empty($gambar)) {
-        move_uploaded_file($_FILES['foto']['tmp_name'],"../vendor/images/img_Guru/$gambar");
-        $ganti = mysqli_query($con,"UPDATE tb_guru SET foto='$gambar' WHERE id_guru='$_POST[ID]' ");
-      }  	
-      $sql  = mysqli_query($con,"UPDATE tb_guru SET nama_guru='$_POST[nama]', password='$password' WHERE id_guru='$_POST[ID]' ") or die(mysqli_error($con));
-      if ($sql) {
-        echo "
+  }
+} elseif (isset($_POST['porifilUpdate'])) {
+  $password = sha1($_POST['password']);
+  $gambar   = @$_FILES['foto']['name'];
+  if (!empty($gambar)) {
+    move_uploaded_file($_FILES['foto']['tmp_name'], "../vendor/images/img_Guru/$gambar");
+    $ganti = mysqli_query($con, "UPDATE tb_guru SET foto='$gambar' WHERE id_guru='$_POST[ID]' ");
+  }
+  $sql  = mysqli_query($con, "UPDATE tb_guru SET nama_guru='$_POST[nama]', password='$password' WHERE id_guru='$_POST[ID]' ") or die(mysqli_error($con));
+  if ($sql) {
+    echo "
           <script type='text/javascript'>
             setTimeout(function () {
               swal({
                 title: 'Sukses',
                 text:  'Profil berhasil diperbaharui!',
                 type: 'success',
-                timer: 3000,
-                showConfirmButton: true
+                timer: 1000,
+                showConfirmButton: false
               });     
             },10);  
             window.setTimeout(function(){ 
               window.location.replace('?page=profil');
-            } ,3000);   
+            } ,1000);   
           </script>";
-      }
-    } elseif (isset($_POST['ujianSave'])) {
-      $waktuSelesai = strtotime($_POST['tgl'] . ' ' . $_POST['jam_selesai'] . ':00');
-      $waktuMulai   = strtotime($_POST['tgl'] . ' ' . $_POST['jamMulai'] . ':00');
+  }
+} elseif (isset($_POST['ujianSave'])) {
+  $waktuSelesai = strtotime($_POST['tgl'] . ' ' . $_POST['jam_selesai'] . ':00');
+  $waktuMulai   = strtotime($_POST['tgl'] . ' ' . $_POST['jamMulai'] . ':00');
 
-      // $waktuSelesai = strtotime($_POST['tgl'] . ' 12:15:00');
-      // $waktuMulai   = strtotime($_POST['tgl'] . ' 11:45:00');
-      
-      $waktu  = $waktuSelesai - $waktuMulai;
+  $waktu  = $waktuSelesai - $waktuMulai;
 
-      $jam    = floor($waktu / (60 * 60));
-      $menit  = ($waktu % (60 * 60)) / 60;
-      switch (strlen($jam)) {
-        case '1':
-          $jam  = '0' . $jam;
-          break;
-        case '2':
-          $jam  = $jam;
-          break;
-        
-        default:
-          # code...
-          break;
-      }
-      switch (strlen($menit)) {
-        case '1':
-          $menit  = '0' . $menit;
-          break;
-        case '2':
-          $menit  = $menit;
-          break;
-        
-        default:
-          # code...
-          break;
-      }
-      $waktu  = $jam . ':' . $menit . ':00';
-      $sql    = mysqli_query($con,"INSERT INTO ujian 
+  $jam    = floor($waktu / (60 * 60));
+  $menit  = ($waktu % (60 * 60)) / 60;
+  switch (strlen($jam)) {
+    case '1':
+      $jam  = '0' . $jam;
+      break;
+    case '2':
+      $jam  = $jam;
+      break;
+
+    default:
+      # code...
+      break;
+  }
+  switch (strlen($menit)) {
+    case '1':
+      $menit  = '0' . $menit;
+      break;
+    case '2':
+      $menit  = $menit;
+      break;
+
+    default:
+      # code...
+      break;
+  }
+  $waktu  = $jam . ':' . $menit . ':00';
+  $sql    = mysqli_query($con, "INSERT INTO ujian 
         VALUES(
           NULL,
           '$_POST[kategori]',
@@ -336,58 +449,59 @@
           '$_POST[jamMulai]',
           '$_POST[jam_selesai]'
         )
-      ");  	
-      if ($sql) {
-        echo "
+      ");
+  if ($sql) {
+    echo "
           <script type='text/javascript'>
             setTimeout(function () {
               swal({
                 title: 'Sukses',
                 text:  'Data Ditambahkan !',
                 type: 'success',
-                timer: 3000,
-                showConfirmButton: true
+                timer: 1000,
+                showConfirmButton: false
               });     
             },10);  
             window.setTimeout(function(){ 
               window.location.replace('?page=ujian&alert=Berhasil tambah ujian');
-            } ,3000);   
+            } ,1000);   
           </script>";
-      }
-  } elseif (isset($_POST['ujianEdit'])) {
-    $waktuSelesai  = strtotime($_POST['tanggal'] . ' ' . $_POST['jam_selesai'] . ':00');
-    $waktuMulai     = strtotime($_POST['tanggal'] . ' ' . $_POST['jamMulai'] . ':00');
-    
-    $waktu  = $waktuSelesai - $waktuMulai;
+  }
+} elseif (isset($_POST['ujianEdit'])) {
+  $waktuSelesai = strtotime($_POST['tanggal'] . ' ' . $_POST['jam_selesai'] . ':00');
+  $waktuMulai   = strtotime($_POST['tanggal'] . ' ' . $_POST['jamMulai'] . ':00');
+  $waktu  = $waktuSelesai - $waktuMulai;
 
-    $jam    = floor($waktu / (60 * 60));
-    $menit  = $waktu - $jam * (60 * 60);
-    switch (strlen($jam)) {
-      case '1':
-        $jam  = '0' . $jam;
-        break;
-      case '2':
-        $jam  = $jam . ':00';
-        break;
-      
-      default:
-        # code...
-        break;
-    }
-    switch (strlen($menit)) {
-      case '1':
-        $menit  = '0' . $menit;
-        break;
-      case '2':
-        $menit  = $menit . ':00';
-        break;
-      
-      default:
-        # code...
-        break;
-    }
-    $waktu  = $jam . ':' . $menit . ':00';
-    $sql = mysqli_query($con, "UPDATE ujian 
+  $jam    = floor($waktu / (60 * 60));
+
+  $menit  = ($waktu - $jam * (60 * 60)) / 60;
+  switch (strlen($jam)) {
+    case '1':
+      $jam  = '0' . $jam;
+      break;
+    case '2':
+      $jam  = $jam . ':00';
+      break;
+
+    default:
+      # code...
+      break;
+  }
+  switch (strlen($menit)) {
+    case '1':
+      $menit  = '0' . $menit;
+      break;
+    case '2':
+      $menit  = $menit;
+      break;
+
+    default:
+      # code...
+      break;
+  }
+
+  $waktu  = $jam . ':' . $menit . ':00';
+  $sql = mysqli_query($con, "UPDATE ujian 
       SET kategori    = '$_POST[kategori]', 
           judul       = '$_POST[judul]',
           tanggal     = '$_POST[tgl]',
@@ -402,38 +516,37 @@
           jam_selesai = '$_POST[jam_selesai]' 
       WHERE id_ujian  = '$_POST[id]' 
     ");
-    if ($sql) {
-      echo "
+  if ($sql) {
+    echo "
         <script type='text/javascript'>
           setTimeout(function () {
             swal({
               title             : 'Sukses',
               text              : 'Data Telah Diubah !',
               type              : 'success',
-              timer             : 3000,
-              showConfirmButton : true
+              timer             : 1000,
+              showConfirmButton :false
             });     
           },10);  
           window.setTimeout(function(){ 
             window.location.replace('?page=ujian&alert=Data berhasil diubah');
-          } ,3000);   
+          } ,1000);   
         </script>";
-      }
-    }
-    elseif (isset($_POST['kelasujianSave'])) {
-      $kls            = $_POST['kelas'];
-      $jumlahTerpilih	= count($kls);
-      for ($x=0; $x <$jumlahTerpilih ; $x++) { 
-        $cek_query  = mysqli_query($con,"SELECT * FROM kelas_ujian WHERE id_ujian='$_POST[id]' AND id_kelas='$kls[$x]' ");
-        $cek        = mysqli_num_rows($cek_query);
-        if($cek > 0){
-          echo "
+  }
+} elseif (isset($_POST['kelasujianSave'])) {
+  $kls            = $_POST['kelas'];
+  $jumlahTerpilih  = count($kls);
+  for ($x = 0; $x < $jumlahTerpilih; $x++) {
+    $cek_query  = mysqli_query($con, "SELECT * FROM kelas_ujian WHERE id_ujian='$_POST[id]' AND id_kelas='$kls[$x]' ");
+    $cek        = mysqli_num_rows($cek_query);
+    if ($cek > 0) {
+      echo "
             <script>
             window.location='?page=ujian&alert=Sudah Pernah Menambahkan Kelas Ujuan !';
             </script>
             ";
-        } else {
-          $s  = mysqli_query($con, "INSERT INTO kelas_ujian (
+    } else {
+      $s  = mysqli_query($con, "INSERT INTO kelas_ujian (
             id_ujian,
             id_kelas,
             aktif
@@ -444,30 +557,31 @@
               'N'
             )
           ") or die(mysqli_error($con));
-          if ($s) {
-            echo "
+      if ($s) {
+        echo "
               <script type='text/javascript'>
                 setTimeout(function () {
                   swal({
                     title : 'Sukses',
                     text  : 'BERHASIL TAMBAH KELAS',
                     type  : 'success',
-                    timer : 3000
+                    timer : 1000,
+                    showConfirmButton: false
                   });     
                 },10);  
                 window.setTimeout(function(){ 
                   window.location.replace('?page=ujian');
-                } ,3000); 
+                } ,1000); 
               </script>
             ";
-          }
-        }
       }
-    } elseif (isset($_POST['kelasujianEssaySave'])) {
-      $kls            = $_POST['kelas'];
-      $jumlahTerpilih	= count($kls);
-      for ($x=0; $x <$jumlahTerpilih ; $x++) { 
-        $s  = mysqli_query($con, "INSERT INTO kelas_ujianessay(
+    }
+  }
+} elseif (isset($_POST['kelasujianEssaySave'])) {
+  $kls            = $_POST['kelas'];
+  $jumlahTerpilih  = count($kls);
+  for ($x = 0; $x < $jumlahTerpilih; $x++) {
+    $s  = mysqli_query($con, "INSERT INTO kelas_ujianessay(
             id_ujianessay,
             id_kelas
             aktif
@@ -477,61 +591,297 @@
             'Y'
           )
         ") or die(mysqli_error($con));
-        if ($s) {
-          echo "
+    if ($s) {
+      echo "
             <script>
               window.location='?page=ujian';
             </script>
           ";
-        }
-      }
-    } elseif (isset($_POST['objektifSaveEssay'])) {
-      $sql  = mysqli_query($con, "INSERT INTO soal_essay(
+    }
+  }
+} elseif (isset($_POST['objektifSaveEssay'])) {
+
+  $allowed_ext  = array('gif', 'bmp', 'jpg', 'jpeg', 'png');
+  $file_name    = $_FILES['gambar_soal']['name'];
+  @$file_ext    = strtolower(end(explode('.', $file_name)));
+  $file_size    = $_FILES['gambar_soal']['size'];
+  $file_tmp     = $_FILES['gambar_soal']['tmp_name'];
+  $rand        = rand();
+  $date        = date('Y-m-d');
+  $nameBaru = $rand . '-' . $date . '-' .  $file_name;
+  if (!empty($file_name)) {
+    if (in_array($file_ext, $allowed_ext) === true) {
+      if ($file_size < 3044070) {
+        move_uploaded_file($_FILES['gambar_soal']['tmp_name'], "../vendor/images/img_Soal/$nameBaru");
+        $sql  = mysqli_query($con, "INSERT INTO soal_essay
+        (
           id_ujian, 
-          soal
-        ) VALUES (
+          soal,
+          gambar
+        )
+        VALUES(
           '$_POST[id]', 
-          '$_POST[soal]'
+          '$_POST[soal]',
+          '$nameBaru'
         )
       ");
-      if ($sql) {
-        echo "
+        if ($sql) {
+          echo "
           <script type='text/javascript'>
             setTimeout(function () {
               swal({
-                title: 'Sukses',
-                text:  'Data Ditambahkan !',
-                type: 'success',
-                timer: 3000,
-                showConfirmButton: true
-              });     
+              title: 'Sukses',
+              text:  'Data Ditambahkan !',
+              type: 'success',
+              timer: 1000,
+              showConfirmButton: false
+            });     
             },10);  
             window.setTimeout(function(){ 
-              window.location.replace('?page=ujian&act=soalessay&id=$_POST[id]');
-            } ,3000);   
+              window.location.replace('?page=ujian&act=soalessay&id=$_POST[id]&alert=Berhasil tambah soal');
+            } ,1000);   
           </script>";
-      }
-    } elseif (isset($_POST['objektifEditEssay'])) {
-      $sql  = mysqli_query($con, "UPDATE soal_essay SET soal='$_POST[soal]', kunci='$_POST[kunci]' WHERE id_soal='$_POST[ids]' ");
-      if ($sql) {
+        }
+      } else {
         echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'ERROR: Besar ukuran file (file size) maksimal 1 Mb!',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=ujian&act=soalessay&id=$_POST[id]');
+          } ,1000);   
+        </script>";
+      }
+    } else {
+      echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'File Tidak Di Ijinkan',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=ujian&act=soalessay&id=$_POST[id]');
+          } ,1000);   
+        </script>";
+    }
+  } else {
+    $sql  = mysqli_query($con, "INSERT INTO soal_essay(id_ujian, soal) VALUES('$_POST[id]', '$_POST[soal]')");
+
+    if ($sql) {
+      echo "
+      <script type='text/javascript'>
+        setTimeout(function () {
+          swal({
+          title: 'Sukses',
+          text:  'Data Ditambahkan !',
+          type: 'success',
+          timer: 1000,
+          showConfirmButton: false
+        });     
+        },10);  
+        window.setTimeout(function(){ 
+          window.location.replace('?page=ujian&act=soalessay&id=$_POST[id]&alert=Berhasil tambah soal');
+        } ,1000);   
+      </script>";
+    }
+  }
+} elseif (isset($_POST['objektifEditEssay'])) {
+
+  // rubah name
+  $allowed_ext = array('gif', 'bmp', 'jpg', 'jpeg', 'png');
+  $file_name   = $_FILES['gambar_soal']['name'];
+  @$file_ext   = strtolower(end(explode('.', $file_name)));
+  @$name_clear = strtolower((explode('.', $file_name)[0]));
+  $file_size   = $_FILES['gambar_soal']['size'];
+  $file_tmp    = $_FILES['gambar_soal']['tmp_name'];
+  $rand        = rand(1, 4);
+  $date        = date('Y-m-d');
+  $nameBaru = $rand . '-' . $date . '-' .  $file_name;
+
+  if (!empty($file_name)) {
+    if (in_array($file_ext, $allowed_ext) === true) {
+      if ($file_size < 3044070) {
+
+        // hapus gambar
+        $data  = mysqli_fetch_assoc(mysqli_query($con, "SELECT gambar FROM soal_essay WHERE id_soal='$_POST[ids]'"));
+        unlink("../vendor/images/img_Soal/" . $data['gambar']);
+
+
+        move_uploaded_file($_FILES['gambar_soal']['tmp_name'], "../vendor/images/img_Soal/$nameBaru");
+        $sql  = mysqli_query($con, "UPDATE soal_essay SET soal='$_POST[soal]',gambar='$nameBaru' WHERE id_soal='$_POST[ids]'");
+        if ($sql) {
+          echo "
+          <script type='text/javascript'>
+            setTimeout(function () {
+              swal({
+              title: 'Sukses',
+              text:  'Data Ditambahkan !',
+              type: 'success',
+              timer: 1000,
+            });     
+            },10);  
+            window.setTimeout(function(){ 
+              window.location.replace('?page=ujian&act=soalessay&id=$_POST[id]&alert=Berhasil tambah soal');
+            } ,1000);   
+          </script>";
+        }
+      } else {
+        echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'ERROR: Besar ukuran file (file size) maksimal 1 Mb!',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=ujian&act=soalessay&id=$_POST[id]');
+          } ,1000);   
+        </script>";
+      }
+    } else {
+      echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'File Tidak Di Ijinkan',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=ujian&act=soalessay&id=$_POST[id]');
+          } ,1000);   
+        </script>";
+    }
+  } else {
+    $sql  = mysqli_query($con, "UPDATE soal_essay SET soal='$_POST[soal]' WHERE id_soal='$_POST[ids]' ");
+    if ($sql) {
+      echo "
           <script type='text/javascript'>
             setTimeout(function () {
               swal({
                 title: 'Sukses',
                 text:  'Data Telah Diubah !',
                 type: 'success',
-                timer: 3000,
-                showConfirmButton: true
+                timer: 1000,
+                showConfirmButton: false
               });     
             },10);  
             window.setTimeout(function(){ 
               window.location.replace('?page=ujian&act=soalessay&id=$_POST[id]');
-            } ,3000);   
+            } ,1000);   
           </script>";
+    }
+  }
+} elseif (isset($_POST['objektifSave'])) {
+
+  $allowed_ext  = array('gif', 'bmp', 'jpg', 'jpeg', 'png');
+  $file_name    = $_FILES['gambar_soal']['name'];
+  @$file_ext    = strtolower(end(explode('.', $file_name)));
+  $file_size    = $_FILES['gambar_soal']['size'];
+  $file_tmp     = $_FILES['gambar_soal']['tmp_name'];
+  $rand        = rand();
+  $date        = date('Y-m-d');
+  $nameBaru = $rand . '-' . $date . '-' .  $file_name;
+  if (!empty($file_name)) {
+    if (in_array($file_ext, $allowed_ext) === true) {
+      if ($file_size < 3044070) {
+        move_uploaded_file($_FILES['gambar_soal']['tmp_name'], "../vendor/images/img_Soal/$nameBaru");
+        $sql  = mysqli_query($con, "INSERT INTO soal
+        (
+          id_ujian, 
+          soal, 
+          gambar,
+          pilihan_1, 
+          pilihan_2, 
+          pilihan_3, 
+          pilihan_4, 
+          pilihan_5, 
+          kunci
+        )
+        VALUES(
+          '$_POST[id]', 
+          '$_POST[soal]',
+          '$nameBaru', 
+          '$_POST[p1]', 
+          '$_POST[p2]', 
+          '$_POST[p3]', 
+          '$_POST[p4]', 
+          '$_POST[p5]', 
+          '$_POST[kunci]'
+        )
+      ");
+        if ($sql) {
+          echo "
+          <script type='text/javascript'>
+            setTimeout(function () {
+              swal({
+              title: 'Sukses',
+              text:  'Data Ditambahkan !',
+              type: 'success',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+            },10);  
+            window.setTimeout(function(){ 
+              window.location.replace('?page=ujian&act=soal&id=$_POST[id]&alert=Berhasil tambah soal');
+            } ,1000);   
+          </script>";
+        }
+      } else {
+        echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'ERROR: Besar ukuran file (file size) maksimal 1 Mb!',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=ujian&act=soal&id=$_POST[id]');
+          } ,1000);   
+        </script>";
       }
-    } elseif (isset($_POST['objektifSave'])) {
-      $sql  = mysqli_query($con, "INSERT INTO soal
+    } else {
+      echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'File Tidak Di Ijinkan',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=ujian&act=soal&id=$_POST[id]');
+          } ,1000);   
+        </script>";
+    }
+  } else {
+    $sql  = mysqli_query($con, "INSERT INTO soal
         (
           id_ujian, 
           soal, 
@@ -544,7 +894,7 @@
         )
         VALUES(
           '$_POST[id]', 
-          '$_POST[soal]', 
+          '$_POST[soal]',
           '$_POST[p1]', 
           '$_POST[p2]', 
           '$_POST[p3]', 
@@ -553,145 +903,223 @@
           '$_POST[kunci]'
         )
       ");
-      if ($sql) {
-        echo "
+    if ($sql) {
+      echo "
+      <script type='text/javascript'>
+        setTimeout(function () {
+          swal({
+          title: 'Sukses',
+          text:  'Data Ditambahkan !',
+          type: 'success',
+          timer: 1000,
+          showConfirmButton: false
+        });     
+        },10);  
+        window.setTimeout(function(){ 
+          window.location.replace('?page=ujian&act=soal&id=$_POST[id]&alert=Berhasil tambah soal');
+        } ,1000);   
+      </script>";
+    }
+  }
+} elseif (isset($_POST['objektifEdit'])) {
+
+  $allowed_ext  = array('gif', 'bmp', 'jpg', 'jpeg', 'png');
+  $file_name    = $_FILES['gambar_soal']['name'];
+  @$file_ext    = strtolower(end(explode('.', $file_name)));
+  $file_size    = $_FILES['gambar_soal']['size'];
+  $file_tmp     = $_FILES['gambar_soal']['tmp_name'];
+  $rand        = rand();
+  $date        = date('Y-m-d');
+  $nameBaru = $rand . '-' . $date . '-' .  $file_name;
+  if (!empty($file_name)) {
+    if (in_array($file_ext, $allowed_ext) === true) {
+      if ($file_size < 3044070) {
+
+        // hapus gambar
+        $data  = mysqli_fetch_assoc(mysqli_query($con, "SELECT gambar FROM soal WHERE id_soal='$_POST[ids]'"));
+        unlink("../vendor/images/img_Soal/" . $data['gambar']);
+
+        move_uploaded_file($_FILES['gambar_soal']['tmp_name'], "../vendor/images/img_Soal/$nameBaru");
+
+        $sql  = mysqli_query($con, "UPDATE soal 
+        SET   soal      = '$_POST[soal]',
+              gambar    = '$nameBaru',
+              pilihan_1 = '$_POST[p1]',
+              pilihan_2 = '$_POST[p2]',
+              pilihan_3 = '$_POST[p3]',
+              pilihan_4 = '$_POST[p4]',
+              pilihan_5 = '$_POST[p5]',
+              kunci     = '$_POST[kunci]'
+        WHERE id_soal   = '$_POST[ids]'
+      ");
+        if ($sql) {
+          echo "
           <script type='text/javascript'>
             setTimeout(function () {
               swal({
-              title: 'Sukses',
-              text:  'Data Ditambahkan !',
-              type: 'success',
-              timer: 3000,
-              showConfirmButton: true
-            });     
+                title             : 'Sukses',
+                text              :  'Data Telah Diubah !',
+                type              : 'success',
+                timer             : 1000,
+              });     
             },10);  
             window.setTimeout(function(){ 
-              window.location.replace('?page=ujian&act=soal&id=$_POST[id]&alert=Berhasil tambah soal');
-            } ,3000);   
+              window.location.replace('?page=ujian&act=soal&id=$_POST[id]&alert=Data berhasil diedit');
+            } ,1000);   
           </script>";
+        }
+      } else {
+        echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'ERROR: Besar ukuran file (file size) maksimal 1 Mb!',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=ujian&act=soal&id=$_POST[id]');
+          } ,1000);   
+        </script>";
       }
-  } elseif (isset($_POST['objektifEdit'])) {
+    } else {
+      echo "
+        <script type='text/javascript'>
+          setTimeout(function () {
+            swal({
+              title: 'Danger',
+              text:  'File Tidak Di Ijinkan',
+              type: 'error',
+              timer: 1000,
+              showConfirmButton: false
+            });     
+          },10);  
+          window.setTimeout(function(){ 
+            window.location.replace('?page=ujian&act=soal&id=$_POST[id]');
+          } ,1000);   
+        </script>";
+    }
+  } else {
     $sql  = mysqli_query($con, "UPDATE soal 
-      SET soal      = '$_POST[soal]', 
-          pilihan_1 = '$_POST[p1]', 
-          pilihan_2 = '$_POST[p2]', 
-          pilihan_3 = '$_POST[p3]', 
-          pilihan_4 = '$_POST[p4]', 
-          pilihan_5 = '$_POST[p5]', 
-          kunci     = '$_POST[kunci]' 
-      WHERE id_soal = '$_POST[ids]'
-    ");
+                          SET soal      = '$_POST[soal]', 
+                              pilihan_1 = '$_POST[p1]', 
+                              pilihan_2 = '$_POST[p2]', 
+                              pilihan_3 = '$_POST[p3]', 
+                              pilihan_4 = '$_POST[p4]', 
+                              pilihan_5 = '$_POST[p5]', 
+                              kunci     = '$_POST[kunci]' 
+                          WHERE id_soal = '$_POST[ids]'
+                        ");
     if ($sql) {
       echo "
         <script type='text/javascript'>
           setTimeout(function () {
             swal({
               title             : 'Sukses',
-              text              :  'Data Telah Diubah !',
+              text              : 'Data Telah Diubah !',
               type              : 'success',
-              timer             : 3000,
-              showConfirmButton : true
+              timer             : 1000,
+              showConfirmButton :false
             });     
           },10);  
           window.setTimeout(function(){ 
             window.location.replace('?page=ujian&act=soal&id=$_POST[id]&alert=Data berhasil diedit');
-          } ,3000);   
+          } ,1000);   
         </script>";
     }
+  }
+} elseif (isset($_POST['essaySave'])) {
 
+  $sql = mysqli_query($con, "INSERT INTO ujian_essay VALUES(NULL,'$_POST[judul]','$_POST[tgl]','$_POST[jumlah]','$_POST[essay]','$_POST[id_jenis]','$_POST[id_guru]','$_POST[id_mapel]','$_POST[id_semester]')");
+  if ($sql) {
 
-
-  }elseif (isset($_POST['essaySave'])) {
-
-  	$sql = mysqli_query($con,"INSERT INTO ujian_essay VALUES(NULL,'$_POST[judul]','$_POST[tgl]','$_POST[jumlah]','$_POST[essay]','$_POST[id_jenis]','$_POST[id_guru]','$_POST[id_mapel]','$_POST[id_semester]')");
-  	   if ($sql) {
-
-  	   		echo "
+    echo "
 			<script type='text/javascript'>
 			setTimeout(function () {
 			swal({
 			title: 'Sukses',
 			text:  'Ujian Telah Ditambahkan !',
 			type: 'success',
-			timer: 3000,
-			showConfirmButton: true
+			timer: 1000,
+			showConfirmButton: false
 			});     
 			},10);  
 			window.setTimeout(function(){ 
 			window.location.replace('?page=ujian');
-			} ,3000);   
+			} ,1000);   
 		</script>";
-  	   	}
-
-
-
-
   }
-elseif (isset($_POST['essayEdit'])) {
+} elseif (isset($_POST['essayEdit'])) {
 
-  	$sql = mysqli_query($con,"UPDATE ujian_essay SET
-  	 judul='$_POST[judul]',
-  	 tanggal='$_POST[tgl]',
-  	 jml_soal='$_POST[jumlah]',
-  	 soal_essay='$_POST[essay]',
-  	 id_jenis='$_POST[id_jenis]',
-  	 id_mapel='$_POST[id_mapel]',
-  	 id_semester='$_POST[id_semester]' WHERE id_ujianessay='$_POST[id]' ");
-  	   if ($sql) {
-  	   		echo "
+  $sql = mysqli_query($con, "UPDATE ujian_essay SET
+  	 judul       = '$_POST[judul]',
+  	 tanggal     = '$_POST[tgl]',
+  	 jml_soal    = '$_POST[jumlah]',
+  	 soal_essay  = '$_POST[essay]',
+  	 id_jenis    = '$_POST[id_jenis]',
+  	 id_mapel    = '$_POST[id_mapel]',
+  	 id_semester = '$_POST[id_semester]' WHERE id_ujianessay = '$_POST[id]' ");
+  if ($sql) {
+    echo "
 			<script type='text/javascript'>
-			setTimeout(function () {
-			swal({
-			title: 'Sukses',
-			text:  'Ujian Telah Diubah !',
-			type: 'success',
-			timer: 3000,
-			showConfirmButton: true
+        setTimeout(function () {
+        swal({
+        title: 'Sukses',
+        text:  'Ujian Telah Diubah !',
+        type: 'success',
+        timer: 1000,
+        showConfirmButton: false
 			});     
 			},10);  
-			window.setTimeout(function(){ 
-			window.location.replace('?page=ujian');
-			} ,3000);   
+        window.setTimeout(function(){ 
+        window.location.replace('?page=ujian');
+			} ,1000);   
 		</script>";
-  	   	}
+  }
+} elseif (isset($_POST['tugasSave'])) {
 
-
-
-  } elseif (isset($_POST['tugasSave'])) {
-    $sql  = mysqli_query($con, "INSERT INTO tb_tugas 
+  if (empty($_POST['jumlahanggota'])) {
+    $jml_anggota = 0;
+  } else {
+    $jml_anggota = $_POST['jumlahanggota'];
+  }
+  $sql  = mysqli_query($con, "INSERT INTO tb_tugas(id_jenistugas,judul_tugas,isi_tugas,tanggal,waktu,jml_anggota,id_guru,id_mapel,id_semester)  
       VALUES(
-        NULL,
         '$_POST[id_jenis]',
         '$_POST[judul]',
         '$_POST[isi_tugas]',
         '$_POST[tgl]',
         '$_POST[waktu]',
-        '$_POST[jumlahanggota]',
+        '$jml_anggota',
         '$_POST[id_guru]',
         '$_POST[id_mapel]',
         '$_POST[id_semester]'
       ) 
     ");
-    if ($sql) {
-      echo "
+  if ($sql) {
+    echo "
         <script type='text/javascript'>
           setTimeout(function () {
             swal({
               title : 'Sukses',
               text  :  'Tugas Ditambahkan!',
               type  : 'success',
-              timer : 3000
+              timer : 1000,
+              showConfirmButton: false
             });     
           },10);  
           window.setTimeout(function(){ 
             window.location.replace('?page=tugas&alert=Berhasil tambah tugas');
-          } ,3000);   
+          } ,1000);   
         </script>";
-    }
-  } 
-  // edit tugas
-  elseif (isset($_POST['tugasEdit'])) {
-    $sql  = mysqli_query($con, "UPDATE tb_tugas 
+  }
+}
+// edit tugas
+elseif (isset($_POST['tugasEdit'])) {
+  $sql  = mysqli_query($con, "UPDATE tb_tugas 
       SET id_jenistugas = '$_POST[id_jenis]',
           judul_tugas   = '$_POST[judul]',
           isi_tugas     = '$_POST[isi_tugas]',
@@ -701,41 +1129,42 @@ elseif (isset($_POST['essayEdit'])) {
           id_semester   = '$_POST[id_semester]' 
       WHERE id_tugas  = '$_POST[ID]' 
     ");
-    if ($sql) {
-      echo "
+  if ($sql) {
+    echo "
         <script type='text/javascript'>
           setTimeout(function () {
             swal({
             title : 'Sukses',
             text  :  'Tugas Diubah!',
             type  : 'success',
-            timer : 3000
+            timer : 1000,
+            showConfirmButton: false
             });     
           },10);  
           window.setTimeout(function(){ 
             window.location.replace('?page=tugas');
-          } ,3000);   
+          } ,1000);   
         </script>";
-      }
-    }
-    // simapn kelas Tugas
-    elseif (isset($_POST['kelastugasSave'])) {
-      $kls            = $_POST['kelas'];
-      $jumlahTerpilih = count($kls);
-      for ($x=0; $x <$jumlahTerpilih ; $x++) { 
-        $cek_query  = mysqli_query($con, "SELECT * FROM kelas_tugas 
+  }
+}
+// simapn kelas Tugas
+elseif (isset($_POST['kelastugasSave'])) {
+  $kls            = $_POST['kelas'];
+  $jumlahTerpilih = count($kls);
+  for ($x = 0; $x < $jumlahTerpilih; $x++) {
+    $cek_query  = mysqli_query($con, "SELECT * FROM kelas_tugas 
           WHERE id_tugas  = '$_POST[id]' 
           AND id_kelas  = '$kls[$x]' 
         ");
-        $cek  = mysqli_num_rows($cek_query);
-        if($cek > 0) {
-          echo "
+    $cek  = mysqli_num_rows($cek_query);
+    if ($cek > 0) {
+      echo "
             <script>
               window.location='?page=tugas&alert=Sudah Pernah Menambahkan Kelas !';
             </script>
           ";
-        } else {
-          $s  = mysqli_query($con, "INSERT INTO kelas_tugas(
+    } else {
+      $s  = mysqli_query($con, "INSERT INTO kelas_tugas(
             id_tugas,
             id_kelas,
             aktif
@@ -745,25 +1174,24 @@ elseif (isset($_POST['essayEdit'])) {
               'N'
             )
           ") or die(mysqli_error($con));
-          if ($s) {
-            echo "
+      if ($s) {
+        echo "
               <script type='text/javascript'>
                 setTimeout(function () {
                   swal({
                   title : 'Sukses',
                   text  : 'Berhasil menambahkan kelas!',
                   type  : 'success',
-                  timer : 3000
+                  timer : 1000,
+                  showConfirmButton: false
                   });     
                 },10);  
                 window.setTimeout(function(){ 
                   window.location.replace('?page=tugas&alert=Berhasil Menambahkan Kelas!');
-                } ,3000);   
+                } ,1000);   
               </script>
             ";
-          }
-        }
       }
     }
-?>
-
+  }
+}

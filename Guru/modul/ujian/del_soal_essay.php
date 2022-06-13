@@ -1,7 +1,9 @@
-<?php 
-
-$sql=mysqli_query($con,"DELETE FROM soal_essay WHERE id_soal='$_GET[ids]' ");
-	if ($sql) {
+<?php
+// hapus gambar
+$data  = mysqli_fetch_assoc(mysqli_query($con, "SELECT gambar FROM soal WHERE id_soal='$_GET[ids]'"));
+unlink("../vendor/images/img_Soal/" . $data['gambar']);
+$sql = mysqli_query($con, "DELETE FROM soal_essay WHERE id_soal='$_GET[ids]' ");
+if ($sql) {
 	echo "
 	<script type='text/javascript'>
 	setTimeout(function () {
@@ -9,14 +11,12 @@ $sql=mysqli_query($con,"DELETE FROM soal_essay WHERE id_soal='$_GET[ids]' ");
 	title: 'Sukses',
 	text:  'Data Telah Terhapus !',
 	type: 'success',
-	timer: 3000,
-	showConfirmButton: true
+	timer: 1000,
+	showConfirmButton: false
 	});     
 	},10);  
 	window.setTimeout(function(){ 
 	window.location.replace('?page=ujian&act=soalessay&id=$_GET[id]');
-	} ,3000);   
+	} ,1000);   
 	</script>";
-	}
-
- ?>
+}

@@ -1,6 +1,18 @@
 <div class="content-wrapper">
   <h4><b>Pengumuman</b> <small class="text-muted">/</small></h4>
   <hr>
+  <?php 
+    if (empty($role['id_guru'])) { ?>
+      <div class="row purchace-popup">
+        <div class="col-md-12">
+          <span class="d-flex alifn-items-center">
+          <p>Saat ini anda belum memilih jadwal, silahkan tambahkan jadwal.</p>
+          <a href="?page=mapel&act=add" class="btn ml-auto purchase-button"> <i class="fa fa-plus"></i> Tambah Jadwal</a>
+          <i class="mdi mdi-close popup-dismiss"></i>
+          </span>
+        </div>
+      </div>
+    <?php } else { ?>
   <div class="row">
     <div class="col-md-12">
       <div class="card">
@@ -85,7 +97,9 @@
                           </div>
                         </td>                        
                       </tr>  
-                    <?php } 
+                    <?php }
+
+                  } 
                   ?>                      
                 </tbody>                      
               </table>                    

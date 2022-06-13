@@ -12,23 +12,23 @@
               <hr>
               <form class="forms-sample" action="" method="post">
                 <?php
-                  $edit = mysqli_query($con, "SELECT * FROM jadwal 
+                $edit = mysqli_query($con, "SELECT * FROM jadwal 
                     WHERE id_jadwal = '$_GET[id]' 
                   ") or die(mysqli_error($con));
-                  $d  = mysqli_fetch_array($edit);
+                $d  = mysqli_fetch_array($edit);
                 ?>
-                <input type="hidden" name="id_guru" value="<?=$data['id_guru']; ?>">
+                <input type="hidden" name="id_guru" value="<?= $data['id_guru']; ?>">
                 <div class="form-group">
                   <label for="mapel">Mata Pelajaran</label>
                   <div class="input-group">
-                    <select class="form-control" id="mapel" name="mapel"style="font-weight: bold;background-color: #212121;color: #fff;" required>
+                    <select class="form-control" id="mapel" name="mapel" style="font-weight: bold;background-color: #212121;color: #fff;" required>
                       <option value="">-- Pilih --</option>
                       <?php
-                        $sqlMapel = mysqli_query($con, "SELECT * FROM tb_master_mapel ORDER BY id_mapel DESC");
-                        while($mapel=mysqli_fetch_array($sqlMapel)){
-                          $selected = $mapel['id_mapel'] == $d['mata_pelajaran_id'] ? 'selected' : '';
-                          echo "<option value='$mapel[id_mapel]' $selected>$mapel[mapel]</option>";
-                        }
+                      $sqlMapel = mysqli_query($con, "SELECT * FROM tb_master_mapel ORDER BY id_mapel DESC");
+                      while ($mapel = mysqli_fetch_array($sqlMapel)) {
+                        $selected = $mapel['id_mapel'] == $d['mata_pelajaran_id'] ? 'selected' : '';
+                        echo "<option value='$mapel[id_mapel]' $selected>$mapel[mapel]</option>";
+                      }
                       ?>
                     </select>
                     <div class="input-group-append bg-success border-success"></div>
@@ -36,14 +36,14 @@
                 </div>
                 <div class="form-group">
                   <label for="kelas">Kelas Mata Pelajaran</label>
-                  <select class="form-control" id="kelas" name="kelas"style="font-weight: bold;background-color: #212121;color: #fff;" required>
+                  <select class="form-control" id="kelas" name="kelas" style="font-weight: bold;background-color: #212121;color: #fff;" required>
                     <option value="">-- Pilih --</option>
                     <?php
-                      $sqlKelas = mysqli_query($con, "SELECT * FROM tb_master_kelas ORDER BY id_kelas DESC");
-                      while($kelas=mysqli_fetch_array($sqlKelas)){
-                        $selected = $kelas['id_kelas'] == $d['kelas_id'] ? 'selected' : '';
-                        echo "<option value='$kelas[id_kelas]' $selected>$kelas[kelas]</option>";
-                      }
+                    $sqlKelas = mysqli_query($con, "SELECT * FROM tb_master_kelas ORDER BY id_kelas DESC");
+                    while ($kelas = mysqli_fetch_array($sqlKelas)) {
+                      $selected = $kelas['id_kelas'] == $d['kelas_id'] ? 'selected' : '';
+                      echo "<option value='$kelas[id_kelas]' $selected>$kelas[kelas]</option>";
+                    }
                     ?>
                   </select>
                 </div>
@@ -67,7 +67,7 @@
                   <label for="semester">Jam Selesai</label>
                   <input type="time" class="form-control" name="jam_selesai" style="font-weight: bold;background-color: #212121;color: #fff;" value="<?= $d['jam_selesai']; ?>" required>
                 </div>
-                <input type="hidden" name="status" value="<?= $status; ?>">
+                <input type="hidden" name="status" value="<?= $d['status']; ?>">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-info mr-2" data-toggle="modal" data-target="#modalKonfirmasi">Edit</button>
 
@@ -85,7 +85,7 @@
                         Anda yakin akan mengedit jadwal ini?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button> 
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" name="jadwalEdit" class="btn btn-info">Edit</button>
                       </div>
                     </div>
@@ -93,9 +93,9 @@
                 </div>
                 <a href="?page=jadwal" class="btn btn-danger">Batal</a>
               </form>
-              <?php 
-                if (isset($_POST['jadwalEdit'])) {
-                  $save = mysqli_query($con,"UPDATE JADWAL 
+              <?php
+              if (isset($_POST['jadwalEdit'])) {
+                $save = mysqli_query($con, "UPDATE JADWAL 
                     set mata_pelajaran_id = '$_POST[mapel]',
                         kelas_id          = '$_POST[kelas]',
                         hari              = '$_POST[hari]',
@@ -104,25 +104,25 @@
                         status            = '$_POST[status]'
                     WHERE id_jadwal       = '$_GET[id]'
                   ");
-                  if ($save) {
-                    echo "  
+                if ($save) {
+                  echo "  
                     <script type='text/javascript'>
                       setTimeout(function () {
                         swal({
                           title             : 'Sukses',
                           text              : 'JADWAL BERHASIL DIUBAH',
                           type              : 'success',
-                          timer             : 3000,
-                          showConfirmButton : true
+                          timer             : 1000,
+                          showConfirmButton : false
                         });     
                       },10);  
                       window.setTimeout(function(){ 
-                        window.location='?page=jadwal&alert=Data Berhasil diedit !';
-                      } ,3000);   
+                        window.location='?page=jadwal';
+                      } ,1000);   
                     </script>";
-                  }
                 }
-              ?> 
+              }
+              ?>
             </div>
           </div>
         </div>

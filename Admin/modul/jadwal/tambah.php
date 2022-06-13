@@ -11,17 +11,17 @@
               <p class="card-description"></p>
               <hr>
               <form class="forms-sample" action="" method="post">
-                <input type="hidden" name="id_guru" value="<?=$data['id_guru']; ?>">
+                <input type="hidden" name="id_guru" value="<?= $data['id_guru']; ?>">
                 <div class="form-group">
                   <label for="mapel">Mata Pelajaran</label>
                   <div class="input-group">
-                    <select class="form-control" id="mapel" name="mapel"style="font-weight: bold;background-color: #212121;color: #fff;" required>
+                    <select class="form-control" id="mapel" name="mapel" style="font-weight: bold;background-color: #212121;color: #fff;" required>
                       <option value="">-- Pilih --</option>
                       <?php
-                        $sqlMapel = mysqli_query($con, "SELECT * FROM tb_master_mapel ORDER BY id_mapel DESC");
-                        while($mapel=mysqli_fetch_array($sqlMapel)){
-                          echo "<option value='$mapel[id_mapel]'>$mapel[mapel]</option>";
-                        }
+                      $sqlMapel = mysqli_query($con, "SELECT * FROM tb_master_mapel ORDER BY id_mapel DESC");
+                      while ($mapel = mysqli_fetch_array($sqlMapel)) {
+                        echo "<option value='$mapel[id_mapel]'>$mapel[mapel]</option>";
+                      }
                       ?>
                     </select>
                     <div class="input-group-append bg-success border-success"></div>
@@ -29,13 +29,13 @@
                 </div>
                 <div class="form-group">
                   <label for="kelas">Kelas Mata Pelajaran</label>
-                  <select class="form-control" id="kelas" name="kelas"style="font-weight: bold;background-color: #212121;color: #fff;" required>
+                  <select class="form-control" id="kelas" name="kelas" style="font-weight: bold;background-color: #212121;color: #fff;" required>
                     <option value="">-- Pilih --</option>
                     <?php
-                      $sqlKelas = mysqli_query($con, "SELECT * FROM tb_master_kelas ORDER BY id_kelas DESC");
-                      while($kelas=mysqli_fetch_array($sqlKelas)){
-                        echo "<option value='$kelas[id_kelas]'>$kelas[kelas]</option>";
-                      }
+                    $sqlKelas = mysqli_query($con, "SELECT * FROM tb_master_kelas ORDER BY id_kelas DESC");
+                    while ($kelas = mysqli_fetch_array($sqlKelas)) {
+                      echo "<option value='$kelas[id_kelas]'>$kelas[kelas]</option>";
+                    }
                     ?>
                   </select>
                 </div>
@@ -81,9 +81,9 @@
                 </div>
                 <a href="?page=jadwal" class="btn btn-danger">Batal</a>
               </form>
-              <?php 
-                if (isset($_POST['jadwalSave'])) {
-                  $save = mysqli_query($con,"INSERT INTO jadwal 
+              <?php
+              if (isset($_POST['jadwalSave'])) {
+                $save = mysqli_query($con, "INSERT INTO jadwal 
                     VALUES(
                       NULL,
                       '$_POST[mapel]',
@@ -94,23 +94,23 @@
                       'belum'
                     )
                   ");
-                  echo " 
+                echo " 
                     <script type='text/javascript'>
                       setTimeout(function () {
                         swal({
                           title             : 'Sukses',
                           text              : 'JADWAL BERHASIL DISIMPAN',
                           type              : 'success',
-                          timer             : 3000,
-                          showConfirmButton : true
+                          timer             : 1000,
+                          showConfirmButton : false
                         });     
                       },10);  
                       window.setTimeout(function(){ 
-                        window.location='?page=jadwal&alert=Data Berhasil ditambah !';
-                      } ,3000);   
+                        window.location='?page=jadwal';
+                      } ,1000);   
                     </script>";
-                }
-              ?> 
+              }
+              ?>
             </div>
           </div>
         </div>

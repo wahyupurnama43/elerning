@@ -1,6 +1,6 @@
 <?php
-$del = mysqli_query($con,"UPDATE tb_guru SET status='N',confirm='Yes' WHERE id_guru='$_GET[id]' ") or die(mysqli_error($con));
-if ($del) {	
+$del = mysqli_query($con, "UPDATE tb_guru SET status='N',confirm='Yes' WHERE id_guru='$_GET[id]' ") or die(mysqli_error($con));
+if ($del) {
 
 	echo "
 	<script type='text/javascript'>
@@ -9,14 +9,12 @@ if ($del) {
 	title: 'SUKSES',
 	text:  'Akun ditolak',
 	type: 'success',
-	timer: 3000,
-	showConfirmButton: true
+	timer: 1000,
+	showConfirmButton: false
 	});     
 	},10);  
 	window.setTimeout(function(){ 
 	window.location.replace('index.php');
-	} ,3000);   
+	} ,1000);   
 	</script>";
 }
-
- ?>

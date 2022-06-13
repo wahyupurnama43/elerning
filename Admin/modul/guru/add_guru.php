@@ -43,7 +43,7 @@
                         Anda yakin akan menambah guru?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button> 
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button name="saveGuru" type="submit" class="btn btn-success mr-2">Tambah</button>
                       </div>
                     </div>
@@ -51,16 +51,16 @@
                 </div>
                 <a href="?page=guru" class="btn btn-light">Batal</a>
               </form>
-              <?php 
-                if (isset($_POST['saveGuru'])) {
-                  $pass         = sha1($_POST['nip']);
-                  $sumber       = @$_FILES['foto']['tmp_name'];
-                  $target       = '../vendor/images/img_Guru/';
-                  $nama_gambar  = @$_FILES['foto']['name'];
-                  $pindah       = move_uploaded_file($sumber, $target.$nama_gambar);
-                  $date         = date('Y-m-d');
-                  if ($pindah) {
-                    $save = mysqli_query($con, "INSERT INTO tb_guru VALUES(
+              <?php
+              if (isset($_POST['saveGuru'])) {
+                $pass         = sha1($_POST['nip']);
+                $sumber       = @$_FILES['foto']['tmp_name'];
+                $target       = '../vendor/images/img_Guru/';
+                $nama_gambar  = @$_FILES['foto']['name'];
+                $pindah       = move_uploaded_file($sumber, $target . $nama_gambar);
+                $date         = date('Y-m-d');
+                if ($pindah) {
+                  $save = mysqli_query($con, "INSERT INTO tb_guru VALUES(
                       NULL,
                       '$_POST[nip]',
                       '$_POST[nama]',
@@ -71,26 +71,26 @@
                       '$date',
                       'Yes')
                     ");
-                    if ($save) {
-                      echo " 
+                  if ($save) {
+                    echo " 
                       <script type='text/javascript'>
                         setTimeout(function () {
                           swal({
                             title             : 'Sukses',
                             text              : 'AKUN BERHASIL DISIMPAN',
                             type              : 'success',
-                            timer             : 3000,
-                            showConfirmButton : true
+                            timer             : 1000,
+                            showConfirmButton : false
                           });     
                         },10);  
                         window.setTimeout(function(){ 
-                          window.location='?page=guru&alert=Data berhasil ditambah !';
-                        } ,3000);   
+                          window.location='?page=guru';
+                        } ,1000);   
                       </script>";
-                    }
                   }
                 }
-              ?> 
+              }
+              ?>
             </div>
           </div>
         </div>

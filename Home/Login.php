@@ -26,113 +26,107 @@
             </div>
           </form>
           <?php
-            if (isset($_POST['Login'])) {
-              $email  = trim(mysqli_real_escape_string($con, $_POST['email']));
-              $pass   = sha1($_POST['password']);
-              $level  = $_POST['level'];
+          if (isset($_POST['Login'])) {
+            $email  = trim(mysqli_real_escape_string($con, $_POST['email']));
+            $pass   = sha1($_POST['password']);
+            $level  = $_POST['level'];
 
-              if ($level =='1') {
-                $sql  = mysqli_query($con,"SELECT * FROM tb_guru WHERE email='$email' AND password='$pass' ") or die(mysqli_error($con)) ;
-                $data = mysqli_fetch_array($sql);
-                $id   = $data [0];
-                $cek  = mysqli_num_rows($sql);
-                if ($cek >0 ){
-                  $_SESSION['Guru']           = $id;
-                  $_SESSION['upload_gambar']  = TRUE;
-                  echo "
+            if ($level == '1') {
+              $sql  = mysqli_query($con, "SELECT * FROM tb_guru WHERE email='$email' AND password='$pass' ") or die(mysqli_error($con));
+              $data = mysqli_fetch_array($sql);
+              $id   = $data[0];
+              $cek  = mysqli_num_rows($sql);
+              if ($cek > 0) {
+                $_SESSION['Guru']           = $id;
+                $_SESSION['upload_gambar']  = TRUE;
+                echo "
                   <script type='text/javascript'>
                     setTimeout(function () {
                       swal({
                         title: 'Sukses',
                         text:  'Login Berhasil..',
                         type: 'success',
-                        timer: 3000,
-                        showConfirmButton: true
+                        timer: 1000,
+                        showConfirmButton: false
                       });     
                     },10);  
                     window.setTimeout(function(){ 
                       window.location.replace('Guru/index.php');
-                    } ,3000);   
+                    } ,1000);   
                   </script>";
-                }else{
-                  echo "
+              } else {
+                echo "
                   <script type='text/javascript'>
                     setTimeout(function () {
                       swal({
                         title: 'Gagal',
                         text:  'User ID / Password Salah ..',
                         type: 'error',
-                        timer: 3000,
-                        showConfirmButton: true
+                        timer: 1000,
+                        showConfirmButton: false
                       });     
                     },10);  
                     window.setTimeout(function(){ 
                       window.location.replace('?pages=login');
-                    } ,3000);   
+                    } ,1000);   
                   </script>";
-                }
-              } elseif ($level =='2') { 
-                $sql  = mysqli_query($con, "SELECT * FROM tb_siswa WHERE nis ='$email' AND password='$pass' JOIN tb_master_kelas ON tb_siswa.id_kelas=tb_master_kelas.id_kelas") or die(mysqli_error($con)) ;
-                $data = mysqli_fetch_array($sql);
-                $id = $data [0];
-                $cek = mysqli_num_rows($sql);
-                if ($cek >0 ){
-                  $_SESSION['Siswa']      = $id;
-                  $_SESSION['nama_siswa'] = $data['nama_siswa'];
-                  $_SESSION['kelas']      = $data['kelas'];
-                  mysqli_query($con,"UPDATE tb_siswa SET status='Online' WHERE nis='$data[nis]'");
-                      echo "
+              }
+            } elseif ($level == '2') {
+              $sql  = mysqli_query($con, "SELECT * FROM tb_siswa WHERE nis ='$email' AND password='$pass' JOIN tb_master_kelas ON tb_siswa.id_kelas=tb_master_kelas.id_kelas") or die(mysqli_error($con));
+              $data = mysqli_fetch_array($sql);
+              $id = $data[0];
+              $cek = mysqli_num_rows($sql);
+              if ($cek > 0) {
+                $_SESSION['Siswa']      = $id;
+                $_SESSION['nama_siswa'] = $data['nama_siswa'];
+                $_SESSION['kelas']      = $data['kelas'];
+                mysqli_query($con, "UPDATE tb_siswa SET status='Online' WHERE nis='$data[nis]'");
+                echo "
                       <script type='text/javascript'>
                       setTimeout(function () {
                       swal({
                       title: 'Sukses',
                       text:  'Login Berhasil..',
                       type: 'success',
-                      timer: 3000,
-                      showConfirmButton: true
+                      timer: 1000,
+                      showConfirmButton: false
                       });     
                       },10);  
                       window.setTimeout(function(){ 
                       window.location.replace('Siswa/index.php');
-                      } ,3000);   
-                      </script>";            
-                  }else{
-                          echo "
+                      } ,1000);   
+                      </script>";
+              } else {
+                echo "
                       <script type='text/javascript'>
                       setTimeout(function () {
                       swal({
                       title: 'Gagal',
                       text:  'User ID / Password Salah ..',
                       type: 'error',
-                      timer: 3000,
-                      showConfirmButton: true
+                      timer: 1000,
+                      showConfirmButton: false
                       });     
                       },10);  
                       window.setTimeout(function(){ 
                       window.location.replace('?pages=login');
-                      } ,3000);   
+                      } ,1000);   
                       </script>";
-
-
-                  }
-
-
-
+              }
             }
-
-            }
+          }
           ?>
 
-  <!-- end: CODING LOGIN -->
+          <!-- end: CODING LOGIN -->
 
 
 
 
 
 
-                  </div>
-                </div>
-            
-          </div>
         </div>
       </div>
+
+    </div>
+  </div>
+</div>
